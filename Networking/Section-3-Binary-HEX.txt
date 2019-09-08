@@ -1,0 +1,86 @@
+
+------------------------------------
+Chapter -3 Binary
+------------------------------------
+
+--used in subnetting
+--used in access lists
+
+Binary and Decimal
+-------------------
+
+Base(2)   		2^7		2^6		2^5		2^4		2^3		2^2		2^1 	2^0 
+
+Binary			 1		 1		 1		 1		 1		 1 		 1 		 1
+
+Decimal 		128		 64		 32		 16		 8		 4		 2		 1
+
+
+IPv4 Address
+------------
+
+-used to uniquely identify a device on the network
+-has 4 octets in length
+	- 8 bits in length in range of 0-255
+	- expressed in both binary and decimal
+	
+
+Chapter -4 Hexadecimal
+------------------------
+
+	MAC Address and ARP Cache
+	--------------------------
+		.ipconfig /all
+		.hexadecimal is used for MAC addresses and also for IPv6 addresses
+		
+	C:\Users\nkuma255>arp -a
+
+		Interface: 10.237.10.164 --- 0xd
+		  Internet Address      Physical Address      Type
+			10.237.0.1            00-00-0c-9f-f4-7a     dynamic
+			10.237.31.255         ff-ff-ff-ff-ff-ff     static
+			224.0.0.2             01-00-5e-00-00-02     static
+		    224.0.0.22            01-00-5e-00-00-16     static
+		    224.0.0.251           01-00-5e-00-00-fb     static
+		    224.0.0.252           01-00-5e-00-00-fc     static
+		    239.255.255.250       01-00-5e-7f-ff-fa     static
+		    255.255.255.255       ff-ff-ff-ff-ff-ff     static
+		
+		telnet IP
+		sh int f0/0
+		
+	Hexadecimal Conversions
+	-----------------------
+	Hex 				Decimal  		Binary
+	0-F					0-9				0-1
+	
+		
+		
+		
+	15  =  F
+	14  =  E
+	13  =  D
+	12  =  C
+	11  =  B
+	10  =  A
+	0-9 = 0-9
+	
+	
+	255   =   1111 1111  =  FF
+			  ---- ----
+			   15   15
+			   
+	128   =   1000 0000  =  80
+	
+	
+	64	  =   0100 0000  =  40
+	
+	
+	ex:
+		224.1.2.3
+		
+		224 = 1110 0000 = E0
+		1	= 0000 0001 = 01
+		2	= 0000 0010 = 02
+		3   = 0000 0011 = 03
+		

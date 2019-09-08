@@ -1,0 +1,100 @@
+2. Configuring a BIND DNS service
+--------------------------------------------------------
+
+	BIND DNS - Berkeley Internet Name Domain DNS
+
+
+Install BIND DNS
+----------------
+yum install -y bind bind-utils
+
+Note:
+	package: bind
+	service: named
+	
+systemctl enable named
+systemctl start named
+
+
+Note:
+	by default it starts as caching only server
+	we need to open port 53
+	
+	netstat -ln
+	
+	port 53 - for dns lookup
+	port 953 - for controlling dns
+	
+performing lookup at local machine
+-----------------------------------
+dig www.pluralsight.com @127.0.0.1 
+
+
+configuring DNS forwarding
+-----------------------------
+
+	config file location:
+	---------------------
+	/etc/named.conf
+	
+	to listen on all IPv4
+	----------------------
+	listen-on port 53 {any;};
+	listen-on-v6 port 53 {none;};
+	
+	to check for correct changes
+	----------------------------
+	named-checkconf
+	
+	restart
+	---------
+	systemctl start named
+	
+	allow-query
+	-----------
+	allow-query {localhost; CIDR;localnets;};
+	
+	forwarding inside options
+	-------------------------
+	
+	options {
+		forwarders {8.8.8.8; 8.8.4.4;};
+		forward only;
+	}
+	
+Identify DNS Files and Locations
+---------------------------------
+
+vim /etc/named.conf
+
+	to print severity 
+	------------------
+	
+	logging {
+	
+		channel default_debug {
+			.....
+			.....
+			print-severity yes;
+		}
+	}
+	
+	cat /var/named/data/named.run
+	
+Create DNS Forward Lookup zone
+----------------------------------
+
+vim /etc/named.conf
+
+zone "example.vm." {
+	type master;
+	file "db.example";
+	allow-update { none ; };
+	
+};
+
+
+Creating a DNS zone
+--------------------------------------
+
+

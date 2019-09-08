@@ -1,0 +1,6 @@
+Data Types
+-------------
+ .type of data or information
+ .Numbers - 0, 1, -30, 45
+ .String    "Nitesh Kumar"
+ 

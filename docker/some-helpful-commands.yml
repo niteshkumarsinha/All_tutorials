@@ -1,0 +1,25 @@
+CLI commands to stop/remove all containers
+--------------------------------------------
+
+docker stop container-id
+
+docker rm container-id
+
+docker stop $(docker ps -q)     --->   removes all running containers
+
+docker rm $(docker ps -a -q)    --->   removes all running as well as stopped containers
+
+
+Filter
+----------
+
+docker ps --filter status=( created | running| exited )
+
+
+inspect
+------------
+
+docker inspect container-id/name   
+
+
+

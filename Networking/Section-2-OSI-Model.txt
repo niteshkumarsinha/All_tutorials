@@ -1,0 +1,229 @@
+
+--------------------------
+Chapter -2
+--------------------------
+
+OSI-Model - Introduction and Layers
+------------------------------------
+
+	.Used to explain communication between devices .
+	.Standard based model
+		-ISO
+		-MultiVendor Software
+		-Layered Approach
+		
+	.Layers
+		1.Application -Layer 7
+		2.Presentation -Layer 6
+		3.Session	 -Layer 5
+		4.Transport	 -Layer 4
+		5.Network	 -Layer 3
+		6.Datalink	 -Layer 2
+		7.Physical   -Layer 1
+			
+	.Advantages
+		- Standard and InterOperability
+		- Split Development
+
+Application Layer:
+------------------------
+		Network Processes to applications
+		-----------------------------------
+			-provides access for users
+			-provides network services to application processes
+			-identify communication partners
+			-provides user authentication
+			
+			-FTP, Telnet, HTTP
+			Microsoft Outlook
+			-works with protocols such as IMAP, POP3 and SMTP
+			
+Presentation Layer
+--------------------------
+	Data Representation / Syntax
+	----------------------------
+	-ensures that data is readable by receiving system
+	-formats data to be presented to application layer
+	-structures data
+	-negotiates data transfer syntax for application layer
+	-provides encryption
+	
+Session Layer
+----------------
+Interhost Communication
+	- establishment maintainence and termination of session between applications 
+	- two application processes on different machines can establish a session
+	
+	Ex:
+		NetBIOS (Network basic Input Output System)
+		PPTP (Point to Point Tunneling Protocol)
+		
+Transport Layer
+-------------------------
+
+	End to End Connections
+	- messages segmentation  -splits messages into smaller units
+	- handles transportation issues between hosts
+	- ensures data transport reliability
+	- establishes, maintains and terminates virtual circuits
+	
+	two protocols:
+	--------------
+	TCP:
+		-two endsystems will go through TCP 3-way handshake
+		-if packets is missing it will be retransmitted .
+		-acknowledgement of reciept of information
+		
+	UDP:
+		-does not provide reliability
+		-if packets are dropped they are lost
+		-doesn't retransmit lost packet
+		
+	VoIP :
+		doesn't require retransmission of packets
+		
+		
+	Flow Control - manage data transmission
+	
+	Session Multiplexing - multiplexing several message streams or sessions onto one logical link
+	
+		
+Network Layer:
+-----------------------
+
+Data delivery network
+-----------------------
+	-- routes data packets
+
+Layer 3 switches
+	-- have router capabilities
+	-- select the best path to deliver data
+		OSPF (Open Shortest Path First)
+		BGP (Border Gateway Protocol)
+		IS-IS (Intermediate System to Intermediate System)
+		
+IP Addressess:
+	192 . 168 . 1 . 1
+	--------------- -----
+	Network Addr.    host
+	
+	
+Data Link Layer
+-----------------------------
+
+	Access to Media
+	---------------
+		defines how data is formatted for transmission and how access to the network is controlled
+	
+	Ethernet:
+		-Uses MAC Address - 48 bits
+		-identifier of a device 
+			two parts:
+				OUI : organisation unique identifier
+			    Unique Portion
+				
+Physical Layer:
+--------------------
+
+defines how data is transmitted 
+
+	Binary Transmission
+	--------------------
+  - What state represents a 0 or 1
+  - defines the electrical, mechanical , procedural and functional specifications for activating, maintaining and deactivating the physical link.
+  - fiber, copper ,wireless
+  -focussed with physical devices and physical cabling
+  -cable specification:
+              .maximum cable length
+			  .bit synchronization
+			  .cable material
+			  etc.
+			  
+HOST Communication
+----------------------------
+
+	A -----------------------> B
+
+    Processes of Conversion
+		
+		Layer 7 communicates with Layer 7  and it follows the same for every layer.
+		
+		Encapsulation
+		Sender					
+						   User Data
+									|
+				     L7Hdr+User Data|
+									|
+									|
+									|
+									|	Down-direction
+									|	
+									|
+		 L1+l2+.....+L7Hdr+User Data|FCS
+					Bits			|
+									
+									
+	
+		De-Encapsulation
+		Reciever					
+						   User Data
+									|
+				     L7Hdr+User Data|
+									|
+									|
+									|  Updirection
+									|
+									|
+									|
+		 L1+l2+.....+L7Hdr+User Data|FCS
+					Bits			|
+
+			
+			
+Peer to Peer Communication
+----------------------------
+
+Application  <-----------------------> Application
+
+Presentation <-----------------------> Presentation
+
+Session	     <-----------------------> Session
+
+					Segments
+Transport	 <-----------------------> Transport
+
+					Packets
+Network	     <-----------------------> Network
+
+					Frames
+Datalink	 <-----------------------> Datalink
+
+					Bits
+Physical     <-----------------------> Physical
+  
+	
+	
+TCP/IP Model
+---------------------
+
+		1.Application      |
+		2.Presentation     |   Application
+		3.Session	 	   |
+		
+		4.Transport	 	   |   Transport
+		
+		5.Network          |   Internet
+		
+		6.Datalink		   |	Network		
+		7.Physical         |    Access 
+
+Application
+Transport
+Internet
+Network Access
+
+
+Port numbers used to identify traffic and route data to appropriate applications.
+
+TFTP  -69
+HTTP  -80

@@ -1,0 +1,82 @@
+--------------------------
+Cabling and Packet Flows
+--------------------------
+
+1.Data Flows
+----------
+
+Switch - Frame (Layer 2 device)
+Router - packet (Layer 3 device)
+
+Types of Communication
+----------------------
+.Unicast
+.Multicast
+.Broadcast
+
+CSMA/CD
+---------
+.Carrier Sense Multiple Access
+
+Types of Communication
+-----------------------
+
+	Unicast
+	---------
+		.One to One 
+	
+	Broadcast
+	----------
+		.One to All
+		
+	Multicast
+	----------
+		.One to Some
+		
+2.OSI Model Overview
+--------------------
+
+Layer1 : Physical
+	-RJ-45
+	
+Layer2 : Data Link
+	-MAC Address
+	
+Layer3 : Network
+	-IP Address
+	
+Layer4 : Transport
+	-TCP/UDP
+	
+	Bus Topology
+---------------------
+	-clients are connected to a shared communication line(bus)
+	-similar to telephone party line
+	-all devices receive frame from any device
+	
+	
+10base2
+-------
+-coaxial cable 
+-max speed of 10Mbps
+-2 is the maximum segment size(185 metres)
+-base means baseband
+
+-baseband only allows a single signal to traverse the wire at any given time.
+-broadband allows multiple signal
+
+
+MAC Addresses
+--------------
+-Media Access Control
+-48 bits (6 bytes)
+-unique identifier for NIC
+
+.					MAC Address
+
+		OUI								Station Address
+------------------------           -------------------------
+      24bits							        24 bits
+	  
+.24 bits Organisational Identifier
+.24 bits vendor assigned end station address (unique value)

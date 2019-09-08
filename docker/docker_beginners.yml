@@ -1,0 +1,424 @@
+Run
+---------
+docker run image-name        ---> runs a container from an image (starts a new instance of an image)
+
+      Ex: docker run nginx
+
+          --it will run instance of nginx, if image not present it will go to docker hub and pull the image down
+
+
+ps
+----------
+docker ps                    ---> lists all running containers
+docker ps -a                 ---> list running as well as stopped containers
+
+
+stop
+----------
+docker stop container-id /container-name      -->  to stop a running container , must provide a container-id /container-name
+
+
+rm
+-----------
+docker rm container-id/container-name         --> to remove a stopped or exited container permanently
+
+
+images
+--------------------
+docker images                                 --> lists available images and their sizes
+
+
+to remove images
+--------------------
+
+docker rmi image-name                         --> remove all the container instances before removing images
+
+
+to download a image
+--------------------
+
+docker pull image-name
+
+
+append a command
+--------------------
+
+docker run ubuntu sleep 5
+
+
+execute a command on running container
+--------------------------------------
+
+docker exec container-name/id cat /etc/hosts
+
+
+attach and detach
+------------------
+
+docker run container-name      ---> attached to console
+
+docker run -d container-name   ---> detached from console and runs in background
+
+docker attach container-name/container-id   ---> attaches to running container
+
+
+
+Docker Run Commands
+---------------------
+
+  Terminal and STDIN mapping
+  ----------------------------
+
+  docker run redis:4.0   (default is latest)
+
+  By default docker container doesn't listen to standard input
+
+  To map standard input of host to docker container use (-i) option
+
+  To map terminal use (-t) option
+
+  docker run -it image-name
+
+  PORT mapping
+  ------------
+  docker run image-name
+
+  To access the app inside a container we must map port inside the docker container to a free port on the docker host
+
+  docker run -p 80:5000 image  (host:container)
+
+  Volume Mapping
+  ---------------
+  docker run mysql
+
+  to persist data in container map some directory of host to a directory inside container
+
+  docker run -v /opt/datadir:/var/lib/mysql mysql  (host dir ":" conatiner dir)
+
+
+  Inspect Container
+  -----------------
+  docker inspect container_name    -->  returns all details of container in a json format
+
+  Container Logs
+  ---------------------
+
+  docker logs container_name
+
+
+
+
+  #########################################
+
+  Advanced Docker Commands
+  ----------------------------
+
+  docker run ubuntu cat /etc/*release*
+
+  docker run ubuntu:17.10 /etc/*release*
+
+
+
+  Docker images
+  -----------------------
+
+
+Dockerfile(INSTRUCTION ARGUMENT)
+------------
+
+FROM ubuntu                                             (Layer 1)      ---> start from a base OS or another image
+
+RUN apt-get update                                      (Layer 2)  
+RUN apt-get install python python-pip                   (Layer 3)      ---> Runs a particular command
+
+RUN pip install flask                                   (Layer 4)  
+RUN pip install flask-mysql                             (Layer 5)         
+
+COPY app.py /opt/source-code/app.py                     (Layer 6)      ---> copies file from local system on to image
+
+ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run  (Layer 7)      ---> entry point allows us to 
+                                                                            specify a command that will be 
+                                                                            run when image is run as a container
+
+-------------------------------------------------------------------------------------------------------
+docker build Dockerfile -t flask_app      --->   this creates image locally on the system
+
+docker push flask_app                     --->  push to public registry
+
+docker history image-name         (gives layers information)
+
+
+
+Environment Variable
+----------------------
+
+in python 
+
+var_name = os.environ.get('APP_COLOR')
+
+
+docker run -e APP_COLOR=blue container-name
+
+
+to inspect and find env variable details under config session
+---------------------------------------------------------
+docker inspect container-name
+
+
+CMD Vs ENTRYPOINT
+---------------------
+
+Command : default command specified to run 
+  
+   Ex:
+    CMD ["bash"]
+
+   to specify a different command , we append it to override default
+   FROM ubuntu
+
+   CMD sleep 5
+
+   ex:
+    docker run ubuntu sleep 10
+
+    Syntax:
+       CMD command param1    -->  CMD sleep 5
+          or
+       CMD ["Command", "param1"]   --> CMD ["sleep", "10"]
+
+       to only pass params we can use entry point 
+
+       FROM ubuntu
+
+       ENTRYPOINT ["sleep"]
+
+       CMD ["5"]              (default param)
+
+    docker run ubuntu 10 
+
+  To override ENTRYPOINT at runtime
+
+  --------------------------------------
+
+  docker run --entrypoint sleep 10 ubuntu
+
+  
+
+ ---------------------------
+|      Docker Compose       | 
+ ---------------------------
+ 
+With docker compose we can create a configuration file in yaml format (docker-compose.yml) and put together different services
+
+Suppose we want to run multiple docker run commands
+------------------------------------------------------
+
+    docker run mongodb
+    docker run redis:alpine
+    docker run ansible
+
+
+Equivalent compose file below
+---------------------------------
+
+    services:
+        database:
+            image: mongodb
+        messaging:
+            image: redis:alpine
+        orchestration:
+            image: ansible
+            
+            
+
+example: voting app
+--------------------
+
+docker run -d --name=redis redis
+docker run -d --name=db postgres:9.4    
+docker run -d --name=vote voting-app
+docker run -d --name=result result-app
+docker run -d --name=worker worker
+
+We have successfully run but not linked
+
+docker run -d --name=vote -p 5000:80  --link redis:redis voting-app
+docker run -d --name=result -p 5001:80  --link db:db result-app
+docker run -d --name=worker --link redis:redis --link db:db worker
+
+
+
+docker-compose.yml
+----------------------
+version: 2
+
+services:
+    redis:
+        image: redis
+    db:
+        image: postgres:9.14
+    vote:
+        image: voting-app
+        ports:
+            - 5000:80
+        links:
+            - redis
+    result:
+        image: result-app
+        ports: 
+            - 5001:80
+        links:
+            - db
+    worker:
+        image: worker
+        links:
+            - redis
+            - db
+
+        
+Build
+------------
+
+version: 2
+services:
+    redis:
+        image: redis
+    db:
+        image: postgres:9.14
+    vote:
+        build: ./vote
+        ports:
+            - 5000:80
+        depends_on:
+            - redis
+    result:
+        build: ./result
+        ports: 
+            - 5001:80
+        depends_on:
+            - db
+    worker:
+        image: ./worker
+        depends_on:
+            - redis
+            - db
+            
+            
+using networks
+---------------
+
+
+version: 2
+services:
+    redis:
+        image: redis
+        networks:
+            - back-end
+    db:
+        image: postgres:9.14
+        networks:
+            - back-end
+    vote:
+        build: ./vote
+        ports:
+            - 5000:80
+        depends_on:
+            - redis
+        networks:
+            - front-end
+            - back-end
+    result:
+        build: ./result
+        ports: 
+            - 5001:80
+        depends_on:
+            - db
+        networks:
+            - front-end
+            - back-end
+            
+    worker:
+        image: ./worker
+        depends_on:
+            - redis
+            - db
+            
+            
+From version 2 and above we dont need to use links
+
+        
+Run
+-------------
+
+docker-compose up
+
+
+
+----------------------
+|   Docker Registry   |
+----------------------
+
+
+Its a central repository of all docker images. 
+
+
+image: nginx
+
+    format  -->  username/imagename
+
+
+default registry --> Docker Hub
+                    (docker.io)
+                    
+                    
+private registry
+----------------
+    docker login private-regitry.io
+    
+    docker run private-regitry.io/apps/imagename
+
+
+Deploy Private Registry
+------------------------
+    Registry itself an application exposed on port 5000
+
+docker run -d -p 5000:5000 --name registry registry:2
+
+docker image tag my-image localhost:5000/my-image
+
+docker push localhost:5000/my-image
+
+docker pull localhost:5000/my-image  or docker pull IP:5000/my-image
+
+
+
+ ------------------------
+|    DOCKER ENGINE       |
+ ------------------------
+ 
+ .Docker Engine Simple refers to a host with docker installed on it.
+ .When We install docker on a linux host, we are actually installing three different components.
+            -  Docker CLI      (command line interface , can be on different system)      
+                                --> docker -H remote-docker-engine:2375 
+                                    Ex: docker -H 10.123.2.1:2375 run nginx 
+            
+            -  REST API Server (is API that programs can use to talk to daemon)
+            -  Docker Daemon   (background process that manages docker objects like images, volumes, networks, containers)
+
+
+Containerization
+----------------
+
+Docker uses Namespaces to isolate workspaces
+
+All processes are running on the same host but separated in their own containers using namespaces.
+
+By default there is no restriction on how much a resource a container can use.
+
+To restrice docker uses cgroups(Control Groups)
+
+docker run --cpus=.5 ubuntu  (<50%)
+docker run --memory=100m ubuntu            
+            
+docker exec container-name ps -eaf
+ 

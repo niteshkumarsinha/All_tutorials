@@ -1,0 +1,61 @@
+images  :  An image is the application that we want to run
+           Contains binaries and libraries and source code that make up application
+container : A container is an instance of that image running as a process
+            You can have many containers running off the same image
+
+            docker default image registry is docker hub
+
+commands
+--------------------
+
+docker container run --publish 80:80 nginx         (starts a new container from an image)
+
+    .downloaded image nginx from docker hub
+    .started a new container from that image
+    .opened port 80 on the host ip
+    .routes traffic to the container IP, port 80
+
+docker container run --publish 80:80  --detach nginx   (to run in the background as a daemon)
+
+docker container ls            (old way) -> docker  ps  (lists running containers)
+
+docker container stop container-id
+
+docker container ls -a         (old way) ->  docker ps -a (list running as well as stopped containers)
+
+docker container run --> always starts a new container
+
+docker container start --> starts a stopped container
+
+docker container run --publish 80:80  --detach --name custom-name nginx 
+
+docker container logs nameofcontainer    (old way) -> docker logs nameofcontainer
+
+docker container top webhost2-nginx     --> return process info running inside a container
+
+docker container rm 636e40d7a892 (only removes stopped containers)
+
+docker container rm -f 636e40d7a892
+
+
+
+Containers Vs Vm
+------------------------
+
+Containers are just processes 
+Limited to what resources they can access
+Exit when process stops
+
+
+
+docker top container-id/container-name (let me list processes running inside docker container)
+
+
+examples
+----------
+docker container run -d -p 3306:3306 --name db --env MYSQL_RANDOM_ROOT_PASSWORD=yes mysql
+
+
+
+
+

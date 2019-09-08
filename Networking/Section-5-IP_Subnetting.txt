@@ -1,0 +1,311 @@
+-------------------
+ IP Subnetting
+--------------------
+
+	Two main parts
+   ----------------
+		Subnetting Part 1:
+		-------------------
+			Method 1 : Binary Method
+			Method 2 : Quick Method
+			
+		Subnetting Part 2:
+		------------------
+			Multiple Subnets
+			
+		-topics
+		---------
+			.subnet this network into atleast 10 subnets.
+			.subnet this network into subnet having 10 host each.
+		
+		
+	Part 1:Overview
+	---------------
+		IP Address
+		----------
+		-Subnet Address
+		-1st Host Address
+		-Last Host Address
+		-Broadcast Address
+			
+		Two Methods
+		-----------
+			-Binary Method
+			-Quick Method
+			
+	Example:
+		
+				 PC1  ---------------------------------------->Router				 
+			   ------
+			192.168.10.18/24								
+			
+			- What IP Address would router be configured with if it is to use the first IP address in the same subnet as PC1.	Ans: 192.168.10.1
+			- What broadcast address is use by PC1.			Ans:	192.168.10.255
+			- What IP address would router be configured with if it is to use the last IP address in the same subnet as PC1.  Ans: 192.168.10.254
+			- What subnet is PC1 part of?	Ans: 192.168.10.0
+			
+			
+			Binary Rules:
+
+				Network/Subnet Address:
+				-----------------------
+					- Fill the host portion of an IP address with binary 0's.
+				
+				Broadcast Address:
+				-----------------------
+					- Fill the host portion of an IP address with binary 1's.
+				
+				First Host:
+				----------------
+					- Fill the host portion of an IP address with binary 0's except for the last bit which is set to binary 1.
+					
+				Last Host:
+				----------------
+					- Fill the host portion of an IP address with binary 1's except for the last bit which is set to binary 0.
+					
+			
+			Example 1:
+			
+				192.168.1.18/24   or    192.168.1.18	255.255.255.0
+				
+				In the above IP address last octet is host portion.
+					
+					Subnet:	     192.168.1.00000000	  = 	192.168.1.0
+					1st host:    192.168.1.00000001	  =     192.168.1.1
+					Last host:	 192.168.1.11111110	  =     192.168.1.254
+					Broadcast:	 192.168.1.11111111	  = 	192.168.1.255
+					
+					
+			Example 2:
+				
+				172.16.35.123/20	or 		172.16.35.123   255.255.240.0
+				
+				/20  -  20 bits for network address.
+					 -  12 bits for host address.
+					 
+						172.16. 35 .123
+							   ----	
+					Network		|	 Host
+					
+					Thus 20 bits put the split in 3rd octet.
+					
+					
+				.Convert the third and fourth octet into binary as they both are having host bits.
+				
+					IP Address:		172.16.0010 0011.01111011 = 172.16.35.123
+									----------- -------------
+					                 Network		Host
+									or subnet
+									
+					
+					Subnet:		172.16.0010		0000.00000000	= 172.16.32.0
+					First:		172.16.0010		0000.00000001	= 172.16.32.1
+					Last Host:  172.16.0010		1111.11111110	= 172.16.47.254
+					Broadcast:	172.16.0010		1111.11111111	= 172.16.47.255
+					
+		Example:
+				172.16.129.1/17	  or   172.16.129.1 255.255.128.0
+				
+				/17		-   17 bits for network address
+				15 bits for host address.
+				
+				.Convert the third and fourth octet into binary as they both are having host bits.
+				
+					IP Address:		172.16.1  0000001.00000001	=	172.16.129.1
+									--------  ---------------
+					                 Network		Host
+									or subnet
+									
+					
+					Subnet:			172.16.1  0000000.00000000  =	172.16.128.0
+					First:			172.16.1  0000000.00000001  =   172.16.128.1
+					Last:			172.16.1  1111111.11111110	=	172.16.255.254
+					Broadcast		172.16.1  1111111.11111111  =   172.16.255.255
+					
+					
+Quick Method:
+------------------
+
+1st Row		128		64		32		16		8		4		2		1
+2nd Row		128		192		224		240		248		252		254		255
+					
+				
+2nd Row:
+			subtract the value in the first row	from 256
+		 256-128  256-64	256-32								  256-1
+		 
+		 
+		 
+Example 1:
+	
+		PC1	------------------------->	Router
+	172.16.35.123/20
+	172.16.35.123	255.255.240.0
+
+		step 1: find out where the subnet mask is not 255
+		step 2: take note of octet where subnet is not 255
+		
+	
+		172.16.35.123	
+		255.255.240.0
+		
+		third octet has not 255 as subnet mask
+		
+		
+		step 3:
+		subtract that subnet mask value that is not 255 from 256
+		
+		256-240 = 16
+		
+		16 tells us network is increasing in multiples of 16.
+		
+		step 4:
+		
+		work out where 35 is in the range of networks.
+			
+		Just start at 0 and go until you past value in the question.
+		
+		
+		Networks in multiple of 16:
+		---------------------------
+		1st Network:	0
+		2nd Network:	16
+		3rd Network:	32
+							<- 35 is between 32 and 48
+		4th Network:	48
+		
+		
+		Thus 
+		172.16.35.123 is on network	172.16.32.0 and next subnet is  172.16.48.0
+		
+		last address : 172.16.47.255
+		
+		Binary Address
+		---------------
+		
+		10.1.1.254 + 1	= 10.1.1.255
+		10.1.1.255 + 1  = 10.1.2.0
+		10.1.2.0 + 1 = 10.1.2.1
+		
+		or in reverse
+		-------------
+		10.1.2.0 - 1 = 10.1.1.255
+		
+		
+		Note:
+			Broadcast Address = Next Network - 1
+			
+			First Host = Subnet + 1
+			
+			Last Host = Broadcast - 1
+			
+		
+
+Divide a Network
+---------------------------
+
+How to subdivide a network/subnet when given
+----------------------------------------------
+
+-specific number of host required
+	.Here we subdivide a specific network/subnet that we were given into multiple subnets.
+	
+-specific number of subnets
+	-subdivide subnet into multiple subnets
+	
+
+	
+.We have networks with 3 and 2 host requirements per segment.
+
+.192.168.1.0/24 can support 254 hosts , we can subdivide for our requirement.
+
+.number of hosts in a subnet = 2^n - 1
+
+	.where n is the number of bits in the host portion.
+	
+	
+
+-------------------------------------------------------------------------------------------------
+
+
+Subnetting
+------------
+
+Best Way:
+	-To use the binary method
+	-with extra shortcuts
+	
+Involves
+--------
+	-Stealing or taking away bits from host portion of an address
+	-allocating the host bits to the network portion of a new address
+	-it allows us to create multiple subnets
+	
+Two Rules:
+------------
+
+	No. of hosts = 2^n - 2 ,   count host bits from right to left
+	   - 2 addresses are subnet and broadcast address
+	   
+	No. of networks = 2^n  ,   count host bits from left to right
+	
+
+	
+Example 1:
+	ABC Ltd. has been allocated a subnet of 10.1.1.0/24 for SOHO network.
+	Subnet into 14 hosts per network.
+	
+	
+Ans:
+	
+	No. of host bits required = 4
+	No. of bits stolen		  = 4
+	
+	
+	Network  |   Subnet   |   Host
+	
+	10.1.1	 |   0000	  |   0000
+
+								4 bits given to host address
+								
+	
+	Total no. of bits in network/subnet portion : 24 + 4 = 28
+	
+
+	Various Subnets
+	---------------
+	
+					Network  |   Subnet   |   Host
+	
+	1st Network		10.1.1	 |   0000	  |   0000 =  10.1.1.0/28  (or 10.1.1.0  255.255.255.240)
+	2nd Network     10.1.1	 |   0001	  |   0000 =  10.1.1.16/28 (or 10.1.1.0  255.255.255.240)
+	3rd Network		10.1.1	 |   0010	  |   0000 =  10.1.1.32/28 (or 10.1.1.0  255.255.255.240)
+	4th Network     10.1.1	 |   0011	  |   0000 =  10.1.1.48/28 (or 10.1.1.0  255.255.255.240)
+		
+	Last Network	10.1.1	 |   1111	  |   0000 =  10.1.1.240/28(or 10.1.1.0  255.255.255.240)
+	
+	
+	No. of hosts = 2^4 - 2 = 14
+	No. of Subnets = 2^4	=16
+	
+	
+Example 2:
+	ABC has been allocated 10.128.192.0/18
+	Required - 30 subnets with as many hosts as possible
+	
+	.Decide which formula to use:	(network/subnets)
+		-Networks = 2^n
+	
+	.count bits from left to right
+	
+	.30 = 5 bits in binary
+	
+	
+	
+	
+	
+	
+		
+		
+					
+			

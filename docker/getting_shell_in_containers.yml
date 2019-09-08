@@ -1,0 +1,13 @@
+Going inside a container
+---------------------------
+
+    docker container run -it   -->  start new container interactively
+    docker container exec -it  -->  run additional command in existing running container (starts a new process inside a container)
+
+    Ex:
+    
+    docker container run -it --name proxy nginx /bin/bash
+
+    docker container start -ai --name proxy nginx /bin/bash
+
+    docker container exec -it mysql bash

@@ -1,0 +1,15 @@
+Variables
+----------------
+
+.It stores information.
+
+Syntax
+------------------
+set name="Nitesh Kumar"
+
+
+Accessing Variables
+-------------------
+echo %name%
+
+

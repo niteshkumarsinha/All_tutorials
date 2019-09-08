@@ -1,0 +1,6 @@
+1. dir      --->  displays everything in your current directory.
+2. ver      --->  displays version
+3. cls      --->  clear screen
+4. pause    --->  wait for input
+
+ 

@@ -1,0 +1,22 @@
+Linking Docker Containers
+-------------------------------
+
+docker run -d --name webserver httpd        
+
+  we will install another container having curl installed
+  ----------------------------------------------------------
+
+docker run -it --link webserver:web  php-apache-get /bin/bash  -->  (links webserver container to this container with alias web)
+
+
+
+Q. Create a Mysql Container linked php-myadminer
+
+Ans: docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql
+    
+     docker run --name myadmin -d --link some-mysql:db -p 8080:80 adminer
+     
+     
+
+
+

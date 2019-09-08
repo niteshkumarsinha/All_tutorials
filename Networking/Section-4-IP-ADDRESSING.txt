@@ -1,0 +1,464 @@
+-----------------------------
+Chapter -4 - IP Addressing
+-----------------------------
+
+Overview:
+-----------
+	IPv4 Addressess
+	---------------
+	
+	Address Classes
+	---------------
+	class A
+	class B
+	class C
+	class D 
+	class E
+	
+	.IP Address: layer 3 logical address assigned by an administrator
+	.MAC Address : built in to NIC
+	.used by routers to determine where the device is
+	.every device on the internet has unique IP address
+	
+	RFC1918 Addressess
+	------------------
+	  .Private addresses are used internally and those addresses are NAT to a public IP address.
+	
+			10.1.1.1       ----------------->       12.1.1.1
+		Private Address         NAT 			  Public Address 
+		
+IP characteristics and IPv4 address Format:
+-------------------------------------------
+
+	.ping www.google.com
+
+	.DNS will provide name resolution
+	
+	.nslookup - dns resolution of a domain name
+	
+	IPv4 Characteristics
+	--------------------
+	--layer 3 or network layer protocol
+	--connectionless protocol
+	--no built in session
+	--no retransmission
+	--no data recovery features
+	--hierarchical addressing structure
+			-Network and Host Portion
+	--packets treated independently
+			--may take different paths
+				    Load Balancing
+			OSPF -  Bandwidth
+			RIP  -	HopCount
+			
+			
+		.TCP is connection oriented
+						
+										   
+			Transmitter -------------> Reciever
+							syn	
+						<------------
+							syn ack
+						------------->
+							ack
+	
+		
+			
+			--best effort delivery of packets
+			--retransmit packets
+	
+		.UDP
+			doesn't retransmitt packets
+		
+	Format:
+		IP Address:
+			-32 bit Notation
+			-x.x.x.x  - 8bits per octet
+			-has a hierarchical structure to enable routing
+				-network portion
+				-host portion
+		    -ip address are used by routers for routing
+			-routers route traffic to destination address mentioned in the packet
+			
+			
+-----------------------
+Network vs Host Portion
+-----------------------
+
+	IP Address
+		.Network Address Portion(Network ID)
+			- identifies a specific network
+			- routers maintain routing tables that contain network addresses
+			- look at destination IP addresses and match to a network address
+			
+		.Host Address Portion (Host ID)
+			- identifies a specific endpoint on a network
+			- server, printer, PCs, Iphone , Ipad etc.
+			- ARP is used to find a specific host on a network
+	
+----------------------------------------
+IPv4 Address Format and address classes
+----------------------------------------
+
+	.IP address is a 32 bit binary number
+	.Divided into four octets (8bits or 1byte)
+		Ex: 
+			00001010.00000001.00001000.00000010
+			10.1.8.2
+	.Octet
+		- 8 binary bits/ 1 byte
+	.IPv4 Address
+		4 octets
+	.Same host address can appear twice as long as network portion is different.
+	
+Address Classes
+--------------------
+
+ -1981 until introduction of classless inter domain routing in 1993.
+ -divide Ipv4 address in 5 address classes 
+ 
+ Class A  | 						
+ Class B  |   Unicast Traffic
+ Class C  |
+		- accomodates different sizes of networks
+		- aids in classifying networks
+		- class A supports 60 million IP addresses
+		- determined by IANA (Internet Assigned Numbers Authority)
+ 
+ Class D - Multicast
+ class E - reserved for future or experimental purposes
+ 
+ IPv6 - doesn't use address classes
+ Ipv4 - address classes was replaced by CIDR
+ 
+ 
+ classfull Address Format
+ ------------------------
+ -network command RIP
+ 
+ 
+Class A
+---------------
+
+-first octet x .x.x.x  always starts with 0. 
+			---
+		  
+-Binary Range
+	0.0.0.0 - 127.255.255.255
+	
+	First Octet Binary 				Decimal
+	-------------------				----------------
+	00000000							0 (Reserved)
+	
+	to
+	
+	01111111							127 (Reserved)
+	
+	Exceptions
+			-127 is reserved for loopback
+			-0 network is reserved for default network
+			
+	Actual Range
+	------------
+	1.0.0.0  to 126.255.255.255
+	
+	
+	
+	Network and Host Portions
+	
+	xxxxxxxx .xxxxxxxx.xxxxxxxx.xxxxxxxx
+	-------- ---------------------------
+	Network				Host
+	
+	
+	
+class B
+--------------
+
+-starts with binary 10 (one & zero not ten)
+
+-Binary Range
+	128.0.0.0 - 191.255.255.255
+	
+	First Octet Binary 				Decimal
+	-------------------				----------------
+	10000000							128 (start)
+	
+	to
+	
+	10111111							191 (end)
+	
+	
+	Network and Host Portions
+	
+	xxxxxxxx.xxxxxxxx  .xxxxxxxx.xxxxxxxx
+	------------------ -------------------
+	Network				  Host
+	
+	
+	Ex:172.16.1.1
+	
+
+Class C 
+------------------
+
+-starts with binary 110 (one , one, zero)
+--Binary Range
+	192.0.0.0 - 223.255.255.255
+	
+	First Octet Binary 				Decimal
+	-------------------				----------------
+	11000000							192 (start)
+	
+	to
+	
+	11011111							223 (end)
+	
+	
+	Network and Host Portions
+	
+	xxxxxxxx.xxxxxxxx.xxxxxxxx .xxxxxxxx
+	-------------------------- ----------
+	    Network				     Host
+		
+	Ex. 192.168.1.1
+	
+class D
+-------------------
+Class A,B,C - Unicast
+Class D - Multicast
+
+-multicast
+-starts with 1110
+
+--Binary Range
+	224.0.0.0 - 239.255.255.255
+	
+	First Octet Binary 				Decimal
+	-------------------				----------------
+	11100000							224 (start)
+	
+	to
+	
+	11101111							239 (end)
+	
+
+
+class E
+---------------
+
+-starts with binary 1111(one,one,one,one)
+-Binary Range
+	240.0.0.0 - 255.255.255.255
+-reserved 
+
+
+SUMMARY
+----------
+
+Class A 
+--------
+Network Address  
+
+-8bits = network
+
+-10.0.0.0 = network address
+-10.1.2.3 = host address
+-range 1 to 126
+
+
+Class B
+-------------
+Network Address
+172.16.0.0 - network address
+172.16.1.2 - host address
+-range 128 - 191
+
+Class C
+--------------
+Network Address
+192.168.0.0 - network address
+192.168.1.1 - host address
+-range 192 - 223
+
+
+SPECIAL Addressess
+--------------------
+Directed Broadcast Address
+---------------------------
+-host sends data to ALL devices on a specific network.
+-has binary 1s in the entire host portion
+
+If Network 172.31.0.0
+then directed broadcast = 172.31.255.255
+
+Routers can route directed broadcast
+	- disabled by default
+	
+Local Broadcast Address
+---------------------------
+-used to communicate with all devices on the local network
+-address is all binary 1s
+
+11111111.11111111.11111111.11111111
+255.255.255.255
+
+Ex:	
+	- host request an IP address from a DHCP server
+	
+			    broadcast
+		PC --------------------> DHCP Server 
+						
+	  -------
+       No IP 
+	  Address
+	  
+-local broadcast address are always dropped by routers
+-this functionality can be overridden by configuring
+	-DHCP forwarding or DHCP Relay
+
+------------------------
+Local Loop Back Address
+------------------------
+
+-used to let a system send a message to itself for testing
+-this is very useful to make sure that the TCP/IP stack is correctly installed on a machine
+-127.0.0.1
+	-Class A Address 
+	-16 million address is not used due to this convention
+	
+-In IPv6
+	-loopback- ::1
+
+Note:
+	Routers have loopback address which are not the same as local loopback address	
+	
+	Ex: Loopback Interface 10.1.1.1/32 may be configured as routers loopback address.
+	
+	  
+---------------------------
+RFC1918 Private Address
+---------------------------
+.Private addresses are not routable on the internet.
+.RFC-Request For Comments
+	-Internet Standards
+
+.Three blocks of private IP addresses
+-1 class A private network
+-16 class B private network
+-256 class C private network
+	
+	Private Address Space	
+	---------------------
+	10.0.0.0      -         10.255.255.255   (10/8 Prefix)
+	172.16.0.0    -		    172.31.255.255   (172.16/12 Prefix)
+	192.168.0.0   -         192.168.255.255  (192.168/16 Prefix)
+
+.NAT translates private IP addresses to public addresses
+
+Ipv4 Link-Local Addressess
+---------------------------
+-Automatic Private IP Address (APIPA)
+-PC configured for DHCP When no server is available.
+	-range 169.254.0.0/16
+-allows computers to communicate when there are no DHCP servers available.
+-can immediately communicate without configuration
+-host randomly generate the host specific part of the address
+-this address range is not routable and used for link local communication.
+	  
+------------------------------
+SUBNET MASKS
+------------------------------
+
+.Used to determine network and host address.
+.Is a device remote or local.
+
+								If on different network or subnet
+							 _______________________________________Default Gateway
+							|
+							|
+	   PC __________________|
+	10.1.1.1				|  If on the same subnet
+							|_______________________________________PC
+																	10.1.2.1
+																	
+.Determine
+	Remote
+		-thus reached via a default gateway
+	Local
+		-doesn't require a default gateway as in the same subnet.
+		
+Class A,B and C networks have default masks known as natural mask.
+
+Class A: 255.0.0.0
+Class B: 255.255.0.0
+Class C: 255.255.255.0
+
+
+Class A network that hasn't been subnetted would have an address space similar to:
+	- 10.1.1.1 , 255.0.0.0
+
+	
+Convert the address and mask to binary numbers
+
+10.1.1.1  ------         00001010 . 00000001 . 00000001 . 00000001
+250.0.0.0 ------         11111111 . 00000000 . 00000000 . 00000000
+
+AND					---------------------------------------------------
+						 00001010 . 00000000 . 00000000 . 00000000
+						 
+
+Two Simple Rules:
+-----------------
+	
+1 in binary in network mask represents network.
+0 in binary in network mask represents host.
+
+Local or Remote
+-----------------
+
+To find local or remote machine we check the network portion.
+If remote machine network portion is same as local machine then that machine is in the same network.
+
+.Only contiguous 1s are supported in subnet mask, starts with 1s followed by 0s.
+
+
+---------------------------------------
+CIDR  - Classless Inter Domain Routing
+---------------------------------------
+
+.Introduced in 1993
+.Replaces classful IP addressing
+.uses variable length subnet mask.
+		
+			Use:   10.0.0.0/8 notation
+	rather than:   10.0.0.0 255.0.0.0
+	
+	
+	Dotted Decimal 				Binary
+	--------------				------
+	255.255.255.0 				/24  (1's)
+	255.255.0.0					/16  (1's)
+	
+
+CIDR Problems
+-------------                           |
+Class A									|
+--------								|
+	- 16,777,214	host addresses		|
+	- Mask of 255.0.0.0					|			Replaced
+										|			with CIDR
+Class B									|
+--------								|
+	- 65,534 host addresses				|
+	- Mask of 255.255.0.0				|
+										|
+Class C									|
+-------									|
+	- 254 host addresses				|
+	- Mask of 255.255.255.0				|
+	
+Ex:	255.224.0.0  -  /11
+	
+	
+			

@@ -1,0 +1,454 @@
+1.Document Databases:
+-----------------------
+	.In document databases document is stored in separate documents.
+	.Each document is independent of another document.
+	.It is not mandatory to have same fields in all documents.
+	.Documents may have nested documents.
+	.Field may be of different types in a document.
+	.MongoDB stores documents in BSON format.
+	
+	Document1			Document2			Document3
+   -----------		   -----------		   -----------
+     field1				 field1				 field1
+	 field2				 field2				 field2
+	   .				   .				   .
+	   .				   .                   .
+	   .                   .                   .
+	 fieldk				 fieldk				 fieldk
+	 
+2.JSON Format
+--------------
+	
+	.Each json object is a set of key value pairs that are placed between curly braces.
+	.each key value separated by comma
+	.each key must have quotes.
+	.each value has a certain data types
+	.Six data types in JSON
+		-String
+		-Number
+		-Boolean
+		-Array
+		-Object
+		-null
+	
+	
+	Syntax:
+	
+		"Key": "Value"
+		
+	Ex:
+	{
+		"name" : "Nitesh",
+		"Age" : 28,
+		"Address": "Dhanbad"
+	}
+	 
+3.BSON Datatypes
+----------------
+
+String
+Double
+32-bit-Integer
+64-bit-Integer
+Boolean
+Array
+Object
+Null
+Regular Expression
+Timestamp
+Binary Data
+Date
+ObjectId
+
+
+4.Extended JSON
+-----------------
+.Used to convert JSON to BSON and vice-versa
+.Two modes
+	-Shell Mode
+		.Inline BSON types
+		.Internal MongoDB mode
+		.MongoDB shell understands
+		
+	-Strict Mode
+		.Represents BSON types using special key names prepended with $
+		.JSON standard compatible
+		.For all JSON parsers
+		
+.Both modes supported by :
+		.External mongoDB drivers and REST API.
+		.mongoimport utility
+		
+.mongoexport utility only supports strict mode.
+
+
+
+Extended JSON example
+	Shell Mode:
+	-----------
+	{
+		"_id": ObjectId("5fds235235fdsdfsd3434"),
+		"name": "Nitesh"
+		"Age": NumberInt(28)
+		"registered": ISODate("2019-06-07T01:24:10 -2:00")
+	}
+		
+	Strict Mode
+	-------------
+	
+	{
+		"_id": {"$oid": "5fds235235fdsdfsd3434"},
+		"name": "Nitesh",
+		"Age":28,
+		"registered": {"$date": "2019-06-07T01:24:10 -2:00" }
+	}
+	
+	
+5.MongoDB Structure
+--------------------
+
+	.Inside one mongoDB server we can have different databases.
+	.Each of the databases are independent of others
+	.By default mongo creates at least two databases called Admin and Local.
+	
+				.Database 
+				     |
+					 |
+		------------------------------
+		|              |             |
+	 Collection     Collection		Collection
+		|				|					|
+	 Document1 	  Document3		     Document4
+	 Document2						 Document5
+	 
+	 
+	.There is a database
+	.database consists of collections
+	.inside of each collection there are documents
+	.documents are grouped into one collection by common characteristics
+	.internally document is stored in BSON
+	
+	Ex: We can group people into persons collection where each document represents one person
+		
+6.MongoDB Architecture
+--------------------------
+
+				MongoDB
+			---------------
+				  
+			mongod    ------>  mongo shell	  
+				      <------
+				   
+.After installation we get mongoDB server and mongoDB shell
+.server is launched using mongod command
+.shell is launched using mongo command
+
+.shell is used to connect to mongod server
+
+
+Other Utilities
+---------------
+.mongodump        
+.mongorestore
+.mongostat
+.mongoexport
+.mongoimport
+.mongo-connector
+
+
+7.MongoDB Remote Management
+---------------------------
+							 CRUD operations
+
+MongoClient(mongo shell)	------------------>			MongoDBServer(mongod) 
+							<------------------
+																| |
+																| |
+																| |		CRUD operations
+																| |
+																| |
+																| |
+																
+															Mongo Driver
+															  -NodeJs
+															  -Python
+															  -Ruby
+															  -Java
+															  
+															  
+
+--------------------------------------------------------------------------------
+
+.show dbs 		-> gives a list of databases
+.by default mongodb server will accept connection only to localhost
+.sudo vim /etc/mongod.conf
+
+	change bindIp: 0.0.0.0
+	
+.sudo service mongod restart
+.allow external access to server by opening port 27017
+
+.Create admin user in admin database of mongodb
+
+
+	db.createUser({
+		user: "admin",
+		pwd: "password",
+		roles: [
+			{
+			role: "root",
+			db: "admin"
+			}
+		]
+	})
+
+	1. Open mongo shell
+	2. use admin
+	
+.show users
+
+.enable authorization of mongoDB server
+	security:
+  authorization: enabled
+  
+.restart mongod service
+
+.connect from remote machine(mongoDB shell need to be installed on local computer)
+	
+	mongo "mongodb://<username>:<password>@hostname/database"
+	
+	mongo "mongodb://admin:password@ec2-3-82-187-239.compute-1.amazonaws.com/admin"
+	
+	mongo "mongodb+srv://cluster0-jo3ii.gcp.mongodb.net/test" --username admin
+	
+.rs.status() - gives replica set status.
+
+
+------------------------------------------------------------------------------------
+
+7.MongoDB Shell
+---------------
+.Is a separate utility for mongo db connection and management.
+.Based on Javascript
+.Starting from v3.2, mongodb shell uses SpiderMonkey Javascript Engine
+.Supports ES6 from v3.2
+.supports server side javascript
+
+
+to verify which javascript engine is used:
+	- interpreterVersion()
+	- db.serverBuildInfo()
+	
+	
+MongoDB Version
+---------------
+	Verify MongoDB Server Version
+	----------------------------- 
+	mongod --version
+	db.version()
+	db.serverBuildInfo()
+	
+	Verify MongoDB Shell Version
+	----------------------------
+	mongo --version
+	version()
+	
+	Note: Its possible to have different shell and server versions but its recommended to have same Version.
+	
+	
+Getting help in the mongoDB shell
+----------------------------------
+
+>help
+	db.help()
+	db.mycoll.help()
+	sh.help()
+	.............
+	.............
+	
+MongoDB Shell Javascript Syntax
+--------------------------------
+
+		db.version()
+	------	-------------
+ObjectName	 method
+
+
+Invoke Methods With Arguments
+-----------------------------
+
+				string argument
+					 |
+					 |	
+>db.getCollection("test").insertOne({a:10, b: true}) 
+ -------------------------
+	returns objects                      |
+    with its own properties              |
+										 |
+									Object Argument	 
+										 
+It inserts a document in collection test.
+	
+
+8. PRIMARY MongoDB datatypes
+-----------------------------
+
+	Most Common BSON Types
+   ------------------------
+   .ObjectId
+   .String
+   .Object
+   .Array
+   .Int32
+   .Int64
+   .Double
+   .Boolean
+   .Date
+   
+	Types Syntax in Shell Mode
+	---------------------------
+	Type				Syntax
+   -------			   --------
+	
+   .ObjectId		    ObjectId()
+   .String				""
+   .Object				{}
+   .Array				[]
+   .Int32				NumberInt()
+   .Int64				NumberLong()
+   .Double				0.0
+   .Boolean				true/false
+   .Date				ISODate()
+   
+   
+   BSON Type Identifiers
+   ---------------------
+   Type				NumberID			StringID
+   ----				--------			--------
+   String				2				"string"
+   Object				3				"object"
+   Array				4				"array"
+   Boolean				8				"bool"
+   Int32				16				"int"
+   Int64				18				"long"
+   Double				1				"double"
+   Date					9				"date"
+   ObjectId				7				"objectId"
+   
+
+   . $type - operator in MongoDB to query documents by BSON type.
+   
+
+   _id
+-----------------
+.Each document must have a unique identifier 
+.This identifier is used for retrieval of certain document from MongoDB database.
+.This ID must be unique across MongoDB database.
+	-Mandatory document field
+	-can be assigned manually
+	-will be created automatically if not assigned manually.
+
+ObjectId
+-----------------
+
+.12 byte length value that is created automatically by mongoDB.
+. >ObjectId()  - returns newly created ObjectId
+
+
+Date and ISODate
+------------------
+.All dates in BSON is ISO Format.
+.ISODate("...")
+. newDate() or ISODate()
+.Automatically generates value with current time.
+.Date() generates Date in String Format.
+.Empty parentheses means current datetimestamp.
+
+
+Numbers in JSON
+-----------------
+
+.By default MongoDB stores provided number as JSON.
+
+Type				NumberID			StringID		ShellMode Syntax
+----				--------			--------		----------------
+32-bit Integer		  16				  "int"				NumberInt()
+64-bit Integer		  18				  "long"			NumberLong()
+Double				   1				 "double"
+
+
+InputValue			Result 				Type
+----------			------				----
+10					10.0				"double"
+0					 0.0				"double"
+5.75				5.75				"double"
+NumberInt(10)		 10					"int"
+NumberLong(1234)	1234				"long"
+
+Ex: 
+
+obj = {a:10 , b:0 , c:5.75, d: NumberInt(10) , e: NumberLong(12)}	
+
+---------------------------------------------------------------------------
+
+9.CRUD
+--------------------
+
+Introduction to CRUD operations
+----------------------------------
+CREATE
+READ
+UPDATE
+DELETE
+
+Exploring MongoDB Databases and Collections
+--------------------------------------------
+.Default databases and collections are used for system test.
+
+Commands
+-----------
+>db			-  shows active database
+>show dbs	-  list all databases
+>use <database name>   - change active database
+>show collections	- lists all collections inside active databases
+
+
+
+Create and Delete Database and Collection
+-----------------------------------------
+
+Note : There is no command to create new Database. Database will be created together with first collection. Just start using database.
+
+	a.)Use Active Database
+	-------------------
+	use <database name>
+	
+	.Database becomes available only after creating a collection
+	
+	b.)Create New Collection
+	--------------------------
+	db.createCollection("<collection name>")
+	
+	c.) show collections
+	
+	To delete a collection
+	--------------------------
+	d.) db.getCollection("<collection name>").drop()
+	    or
+		db.<collection name>.drop()
+		
+	To delete active database
+	--------------------------
+	db.dropDatabase()
+	
+	
+	
+INSERT Methods
+-----------------------------
+
+
+	
+	
+	
+	
+

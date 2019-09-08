@@ -1,0 +1,12 @@
+1.To Open Cmd Prompt.
+-------------------------
+
+	windows + R --> type 'cmd'
+
+2.It uses a interpreter
+-------------------------
+	->cmd.exe
+
+
+
+

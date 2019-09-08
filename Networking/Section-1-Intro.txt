@@ -1,0 +1,87 @@
+NETWORKING
+-----------
+---------------
+Chapter -1 
+---------------
+
+1.Basic Networking Terms
+----------------------------------
+														
+Internet --> Modem ---> Router -->---> Laptop
+								|
+								|
+								|---->	Desktop
+								
+								
+
+NIC
+---------------
+	Acronyms
+	--------
+	Network Interface Card
+	Network Interface Controller
+	Network Adapter
+	LAN adapter
+	Physical Network Interface
+	
+	This is essentially a computer hardware component that connects a device or computer to network.
+	
+
+	
+	A computer network is two devices sharing information with each other.
+
+
+	Computer  <----------------------------> Laptop
+				 (Ethernet Cable)RJ45
+				 
+				 
+
+				 
+2.Network Protocol
+--------------------
+Set of rules and conventions that governs the communication between network devices.
+
+
+3.Home Network and SOHO network
+--------------------------------
+Router : Recieves data from a Pc or laptops and determines where to forward it.
+Switch - Multiple Ports
+
+	In most cases switch is built into the router.
+
+	
+4. ping and traceroute
+
+	ping (IP or domain name)
+
+	tracert IP or domain name
+	
+	tracert gives all devices accessed to reach the domain-name or IP.
+	
+5. IP Address
+-------------------
+
+Numerical address assigned to every device on the internet.
+
+	Two Parts:
+		Network Address
+		Host Address
+	
+6.Network Categories and Components.
+------------------------------------
+
+Physical Components
+----------------------
+	- used to create a physical topology using various types of cables
+
+Logical Topology
+------------------
+	- how data is transferred from one device to another
+	
+7. Domain Name System
+----------------------
+
+converts names or domain names to IP addresses.
+
+
+

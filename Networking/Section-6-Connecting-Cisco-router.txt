@@ -1,0 +1,191 @@
+CISCO Ios Device Configurations
+-------------------------------------
+
+Overview
+-----------------
+
+-connect to cisco router
+-boot the router up
+-various options
+-network intelligence to meet network requirements
+-basic IOS CLI
+-CLI functions and operations
+	-user mode
+	-privilege mode 
+	-global configuration mode
+	-interface mode
+	-host name command can be used in global configuration mode
+	
+-valid command in a wrong mode - reject
+-embedded help options ?
+-command completion
+-manage configurations
+-how to use additional IOS feaatures
+	
+	
+.Like a computer a switch or router  needs to have a OS.
+.CISCO Ios most common OS
+.powers both small and large devices
+
+
+-CISCO Ios Software 
+ ------------------
+ .powers both small and large devices
+ .exists across multiple products of varying sizes
+ .use for routers
+ .used for LAN
+ .used for WAN
+ 
+-Interfaces on Router may be different from switches.
+-Routing and Switching
+	-using CLI
+	.connect to device 
+		-console
+		-ssh
+		
+-------------------------------------------------------------------------------
+
+connecting to a router
+-----------------------
+
+.Router startup process
+.Initial configuration dialog
+	-allow to configure some basic configuration options
+	
+EXEC Interface
+-configure networking devices
+
+Modes - dont type the right command in wrong mode.
+
+1st: make sure u r in the right mode
+2nd: make sure u r in the right device
+
+--------------------------------------------------------------------------------
+How to connect to Router
+------------------------
+-Console Cable
+-USB to serial converter
+-Terminal Emulation
+	-putty
+	-hyperterminal
+	
+
+	
+---------------------------------------------------------------------------------
+
+Initial Startup
+--------------------
+
+>reload
+
+
+--------------------------------------------
+
+Modes
+-------
+
+.User Mode  ( Router>)
+.Privilege Mode (Router#)
+.Global Configuration Mode 
+
+
+commands
+------------
+
+.show ve?
+
+.enable  - takes to privilege mode
+.conf t  - used in global configuration mode
+
+-------------------------------------------------------------------------------------
+
+Modes
+---------
+
+	1.Enable/Privilege Mode
+		- allow to use many show commands
+		- allow debugging
+		- required to configure the device
+		- "?"  command gives many options
+	
+	>conf t
+		- takes us to global privilege mode
+		-hostname(config)#
+	
+	
+	2.Interface Mode
+	--------------------
+		-hostname(config-if)#
+		-change interface configuration
+			-IP Address
+			-enable/disable interface
+			
+			commands
+			-----------
+			int f0/0   --> interface fastEthernet 0/0
+			ip address 10.1.1.1 255.255.255.0
+			
+	3.Line and Router Mode
+	----------------------------
+	
+	Line Mode
+	----------
+		to enter line mode
+		------------------
+				>line console 0
+				>password cisco
+				login
+				
+		-console	->line console mode
+		-auxiliary  ->line aux mode
+		-vty		-> telnet or ssh connection
+		
+	
+			
+	Router Mode
+	------------
+		-RIP
+		-OSPF
+		>router rip
+
+		
+-----------------------------------------------------------------------------
+
+Help
+----------
+
+context sensitive help
+		- use ? Key
+		- console error messages
+			-displays incomplete or incorrect commands
+			
+		Ex: >router ospf 1
+			>network IP SubnetMAsk
+			
+			
+-----------------------------------------------------------------------------
+
+
+Commands
+-----------
+1.Open CMD:
+2.telnet RouterIP
+3.enable
+4.conf t
+5.router ospf 1
+6.network IP mask
+
+
+
+--------------------------------------------------------------------------------
+
+int f0/1
+ip ad
+ip address 10.0.0.1 255.255.255.0
+no shut
+
+
+--------------------------------------------------------------------------------
+
+
+

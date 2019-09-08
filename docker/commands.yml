@@ -1,0 +1,70 @@
+1. Commands
+-----------------
+docker version    --->  returns the version of client(CLI) and the server (engine)
+
+docker info       --->  returns a lot of configuration info about the engine
+
+docker            --->  return all the Commands
+
+command structure
+----------------------
+
+docker <command> (options)                  --(Old way)
+docker <command> <sub-command> (options)    --(New way)
+
+
+docker pull python
+docker run hello-world
+docker build . -t tag-name:version  -f CustomFileName
+docker run image_name
+
+docker images
+
+    Examples:
+    -----------
+    docker build . -t webapp-nitesh:latest
+    docker run webapp
+
+2.port mapping
+--------------
+
+docker run -d -p 9595:80 webapp-nitesh:latest  ( host port : conatiner port)
+
+
+3.Access a Containers Shell
+----------------------------
+   run and access 
+   ------------------
+   docker run -it ubuntu:latest /bin/bash
+
+   run,access and remove
+   ----------------------
+   docker run -it --rm ubuntu:latest /bin/bash
+
+   access a running container
+   --------------------------
+   docker exex -it container-id/image_name /bin/bash
+
+   using volume mount
+   ------------------
+   docker run -it --rm -v "$(pwd)/file.php:/home/file.php" php:latest /bin/bash
+
+
+Dockerfile
+----------------
+    running commands inside a container
+    -----------------------------------
+
+FROM ubuntu:latest
+RUN echo "Hello World" > /home/test.txt
+
+
+
+logs
+----
+
+docker logs container-name/container-id
+
+docker logs -f --tail container-name/container-id
+
+

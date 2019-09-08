@@ -1,0 +1,133 @@
+YAML
+-----------------
+
+	.Its a data serialization language
+	.Stores information about different things.
+	.We use YAML to define key value pairs.
+	.similar to json
+
+1.Extensions
+-------------
+	.yml and .yaml
+
+
+2.Comments are specified by #
+------------------------------
+	#line1
+	#line2
+
+
+3.variable
+-------------
+
+name: "nitesh"
+occupation: 'programmer'
+age: 23
+gpa: 3.7
+fav_num: 1e+10
+male: true
+birthday: 1992-03-14 				#ISO 8601 standard
+flaws: null
+
+
+
+4.Object
+------------
+
+We can store all the above information inside a person object
+
+person:
+	name: "nitesh"
+	occupation: 'programmer'
+	age: 23
+	gpa: 3.7
+	fav_num: 1e+10
+	male: true
+	birthday: 1992-03-14 				#ISO 8601 standard
+	flaws: null
+
+-scope is defined with indentation
+	
+5.Accessing those values
+-------------------------
+	person.name
+	person.age
+
+6.List
+-------
+.specified using hiphen (-) or square brackets[]
+
+	hobbies:
+	  - hiking
+	  - biking
+	  - riding bike
+	  
+	movies: ["Dark Knight", "Goodwill Hunting"]
+	
+7. Complex lists
+-------------------
+
+Ex: A list of objects 
+
+friends:
+	-name:"Steph"
+	 age: 23
+	- {name: "Adam", age: 22}
+	- 
+	  name: "joe"
+	  age: 23
+	 
+8.Long text
+-------------
+
+.using greater than symbol (>) after key will render all in single line and no formatting is preserved
+
+  description: >
+    jhdvfjdhgfirwgkvbjkfbgkifgfkfbkj,fgvfbfv
+	fdksbksbgkjkdgb
+	fkdsbkjfbv
+	vbfkjbvlfdbv
+	dbvkjfsbvkjsfbv
+		
+.for all formatting to be preserved we use (|)
+
+   signature: |
+     Nitesh Kumar
+	 CG
+	 Bang,INDIA
+	 
+9.Anchoring
+---------------
+
+A Value:
+---------
+
+.We can anchor a value and access it at other places in yaml file we use '&'
+
+person: 
+  name: &name "Nitesh"
+
+
+.using name through anchoring
+  
+id: *name 		 # id will have value "Nitesh"
+
+
+A Key Value pair
+---------------------
+
+base: &base
+  var1: value1
+  
+  
+using entire base by using <<
+
+foo:
+  <<: *base     #storing entire key value pair
+  var2: "hsbkbf"
+  
+  
+10.TypeCasting
+
+age: !!float 23   #rendered as 23.0
+gpa: !!str 3.5    #rendered as "3.5"
