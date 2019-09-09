@@ -1,0 +1,40 @@
+------------------------------
+
+Requires:
+    Hyper-V
+    Optimized linux on Hyper-V
+    Docker on optimized linux
+    
+
+
+With windows server 2016 we have support for windows containers
+-------------------------------------------------------------------
+windows-containers
+------------------
+
+Two types:
+------------
+1) Windows Server container
+-------------------------------
+
+Works like linux containers and shares the OS kernel.
+
+2) Hyper-V Isolation
+-------------------------------
+
+Each container is run within highly optimized virtual machine guaranteeing complete kernel isolation within host and containers.
+
+
+
+Docker For Windows Container Types:
+
+Windows Server Core: Windows container on native windows server core
+
+Hyper-V Isolation: Windows container on an isolated hyper-v kernel
+
+
+Base images in windows:
+----------------------------
+
+windows server core
+nano server

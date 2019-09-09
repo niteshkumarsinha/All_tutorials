@@ -1,0 +1,68 @@
+--------------------
+|   Docker Storage |
+--------------------
+
+Topics:
+    .Docker storage drivers
+    .Where and how docker stores data and how it manages file system of the containers
+    
+When we install docker it creates a folder structure /var/lib/docker
+
+We have multiple folders under it,
+
+aufs
+containers
+image
+volumes
+
+in the above folders docker stores data (files related to images , volumes and containers)
+
+
+---To persist data---
+----------------------
+
+volumes
+----------
+
+docker volume create data_volume          -->    (it creates a folder data_volume in /var/lib/docker )
+
+docker run -v data_volume:/var/lib/mysql mysql  --> (mount this volume inside docker container) 
+                                                    (it creates a volume even when we dont create volume)
+                                                    
+                                                    THE ABOVE IS CALLED VOLUME MOUNTING i.e from volumes folder
+                                                    
+docker run -v /data/mysql:/var/lib/mysql mysql  -->  (This is called bind mounting i.e any location from docker host)  
+
+
+The new way
+----------------
+                                       
+docker run --mount type=bind, source=/data/mysql, target=/var/lib/mysql mysql
+
+
+source is host location
+target is container location
+
+
+---------------------------------
+Who is responsible for all these operations,
+ie maintaining layered architecture,
+   creating writable layer
+   moving files across layers to enable COPY on WRITE
+   
+   
+Ans: Storage Drivers
+
+Ex:  AUFS
+     ZFS
+     BTRFS
+     Device Mapper
+     Overlay
+     Overlay2
+
+
+docker system df -->  show actual disk usage
+
+docker system df -v  --> shows shared size also
+
+docker history image-name --> gives info about layers built

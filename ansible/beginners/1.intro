@@ -1,0 +1,17 @@
+Why Ansible?
+--------------------
+
+.Provisioning
+.Configuration Management
+.Continuous Delivery
+.Application Deployment
+.Security Compliance
+
+
+All of these are very repititive task and involve thousands of commands and may involve sequences.
+
+Installing Ansible
+--------------------
+
+sudo yum install ansible
+

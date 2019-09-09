@@ -1,0 +1,36 @@
+XML
+---
+
+<servers>
+    <server>
+        <name>Server1</name>
+        <owner>John</owner>
+        <created>1231213</created>
+        <status>active</status>
+    </server>
+</servers>
+
+
+JSON
+----
+
+{
+    "servers" [
+        {
+            "name": "server1",
+            "owner": "john",
+            "created": 1231213,
+            "status": "active",
+        }
+        
+    ]
+}
+
+Yaml
+--------
+Servers:
+    - name: server1
+      owner: john
+      created: 1231213
+      status: active
+      

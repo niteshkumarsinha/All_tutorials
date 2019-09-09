@@ -1,0 +1,47 @@
+---------------------------
+|  Docker Networks         |
+---------------------------
+
+
+When we install docker it creates three networks automatically
+1) Bridge
+2) none
+3) host
+
+.Bridge is the default netowrk a container gets attached to
+    .docker run ubuntu
+
+.Bridge network is a private internal network created by docker on the host, containers can access each other if required(to access from  outside world , port mapping is required)
+
+.to associate a container to other network we use the --network option
+
+    docker run ubuntu --network=none
+    docker run ubuntu --network=host
+
+.By specifiying --network=host , we are taking any network isolation between host and container
+
+.With none network container is not accessible to internal or other network or any other containers
+
+
+
+------User Defined Netowrk---------
+-------------------------------------
+
+We can create our own internal bridge network,
+
+docker network create \
+    --driver bridge \
+    --subnet 182.18.0.0\16
+    custom-isolated-network-name
+    
+    
+docker network ls  --> to list all networks
+
+.to see network settings use inspect command
+
+    docker inspect container-name/id
+    
+    
+.Docker has EMBEDDED DNS 
+.All containers within docker host can resolve each other with the name of the container
+.Built in DNS server runs at 127.0.0.11
