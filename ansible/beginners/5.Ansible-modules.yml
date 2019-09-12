@@ -1,0 +1,68 @@
+Ansible Modules
+------------------
+
+Ansible modules are categorized into various groups based on their functionality.
+
+.System         --     Actions to be performed at system level.
+.Commands       --     Used to execute scripts and commands
+.Files          --     Working with files
+.Database     
+.Cloud
+.Windows
+.more....
+
+
+
+Ex: change directory and cat
+
+-
+    name: Play 1
+    hosts: localhost
+    tasks:
+        - name: "Execute a command 'date'"
+          command: date
+          
+        - name: "Display resolv.conf contents"
+          command: cat /etc/resolv.conf
+          
+        - name: "Display resolv.conf contents"
+          command: car resolv.conf chdir=/etc
+          
+        - name: "Copy files"
+          copy: src=/srcfile dest=/dest
+          
+
+
+Script Module
+-----------------
+Script module runs a local script on one or more remote node after transferring it.
+
+1.Copies scripts to remote systems
+2.Execute scripts on remote systems
+
+Ex:
+
+-
+    name: Play1 
+    hosts: localhost
+    tasks: 
+        - name: Run a script on remote server
+          script: /some/local/script.sh -arg1 -arg2
+          
+Service Module
+-----------------------
+Manage services - Start , Stop and Restart
+
+-
+    name: Start services in order
+    hosts: localhost
+    tasks:
+        - name: start the database service
+          service: name=postgres state=started  ---->  or service:
+                                                              name: postgres
+                                                              state: started
+          
+
+          
+
+

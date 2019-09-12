@@ -1,0 +1,118 @@
+Ansible Playbooks
+---------------------
+
+Its ansible orchestartion tool , here we define what we want to do.
+
+Playbook
+--------
+.A single yaml file containing set of plays
+.Play - Defines a set of activities (tasks) to be run on hosts
+.Task - An action to be performed on the host
+    - Execute a command
+    - Run a script
+    - Install a package
+    - Shutdown/Restart
+    
+    
+#Simple ansible playbook.yml
+------------------------------
+
+A playbook is a list of dictionary in yaml terms.
+Note: host defined in the entry file must match the playbook
+
+
+-
+    name: play1
+    hosts: localhost
+    tasks:
+        - name: Execute command 'date'
+          command: date
+         
+        - name: Execute a script on server
+          script: test_script.sh
+          
+        - name: Install httpd service
+          yum:
+              name: httpd
+              state: present
+              
+        - name: start web server
+          service:
+              name: httpd
+              state: started
+              
+---------------------------------
+
+
+
+Ex:
+
+-
+    name: play1
+    hosts: localhost
+    tasks:
+        - name: Execute command 'date'
+          command: date
+         
+        - name: Execute a script on server
+          script: test_script.sh
+          
+          
+-
+    name: play2
+    hosts: localhost
+    tasks:
+        - name: Install httpd service
+          yum:
+              name: httpd
+              state: present
+              
+        - name: start web server
+          service:
+              name: httpd
+              state: started
+
+
+Modules
+-------------
+Different actions run by tasks are called modules.
+
+.ansible-doc -l  --> (to see the modules)
+
+Ex: 
+command, yum, script, service
+
+
+Running Playbooks
+------------------
+to get help
+-------------
+ansible-playbook --help
+
+to run
+-------
+ansible-playbook filename
+
+
+
+Two ways of running ansible
+------------------------------
+
+1st way
+----------
+ansible  <hosts> -a <command> -i inventory.txt
+
+ansible all -a "/sbin/reboot"
+
+ansible <hosts> -m <module> -i inventory.txt
+
+ansible target1 -m ping -i inventory.txt
+
+2nd way
+----------
+
+using playbooks
+---------------
+
+ansible-playbook <playbook-name> -i inventory.txt
+

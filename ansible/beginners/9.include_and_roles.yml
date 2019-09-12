@@ -1,0 +1,61 @@
+include
+-------------
+
+Modularize tasks and use include to include in master playbook.
+
+- include <playbook-name>
+
+    Setup_Applications.yml
+    ------------------------
+    - include provison_vms.yml
+    - include install_dependecies.yml
+    - include configure_web_Server.yml
+    
+same  as above for tasks.
+
+tasks:
+    - include: task.yml
+
+
+For variables
+--------------
+
+vars_files:
+    - variable.yml      (we dont use include in variables)
+
+
+
+
+Ansible Roles
+------------------
+
+It defines a standard way or structure on how files and folders should be organised into a project.
+
+Example:
+    
+AnsiblePRoject
+    inventory.txt
+    setup_app.yml
+    roles
+        webservers
+            files
+            templates
+            tasks
+            handlers
+            vars
+            defaults
+            meta
+            
+.we create separate yaml file for each component and include the role (in this case webservers) in master file(setup_app.yml)
+.we dont have to worry about importing tasks and variables, ansible does automatically by importing from respective folders
+
+
+Ex:
+
+-
+    name: Set Firewall Configurations
+    hosts: web
+    roles:
+        - webservers
+
+

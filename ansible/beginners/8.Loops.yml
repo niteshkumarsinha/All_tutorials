@@ -1,0 +1,19 @@
+LOOPS           (with_items)
+-------------
+
+-
+    name:   Install Packages
+    hosts:  localhost
+    tasks:
+        -   yum:    name='{{item}}'  state=present
+            with_items:
+                - httpd
+                - binutils
+                - glibc
+                - ksh
+                - libaio
+                - gcc
+                - make
+                - sysstat
+                
+        

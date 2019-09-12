@@ -1,0 +1,23 @@
+Variable
+-------------
+
+.Stores information that varies with each host
+.Inventory
+
+
+Defining variable with (vars)
+---------------------------------
+
+
+-                                                                                            Variable Files
+    name: Add DNS server to resolv.conf                                                ----------------------------
+    hosts: localhost                                                                        variable: value1
+    vars:                                                                                   variable: value2
+        dns_server: 10.1.121.12     
+    tasks:
+        - lineinfile:
+            path: /etc/resolv.conf
+            line: 'nameserver {{ dns_server }}'
+            
+            
+Variables can be defined in inventory file itself or in any other file.

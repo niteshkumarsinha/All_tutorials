@@ -1,0 +1,30 @@
+    Conditionals
+---------------------------
+
+-
+    name: Start Services
+    hosts: all_servers
+    tasks:
+        -   service: name=mysql state=present
+            when: ansible_host=="db.company.com"
+            
+        -   service: name=httpd state=present
+            when: ansible_host=="web1.company.com" or ansible_host=="web2.company.com"
+            
+            
+Example Check status of service and email if its down
+------------------------------------------------------------
+
+-
+    name: check status of service and email if its down
+    hosts: localhost
+    tasks:
+        -   command:    service httpd status
+            register:   command_output
+            
+        -   mail:
+                to: Admins <system.admins@company.com>
+                subject: Service Alert
+                body: 'Service {{ ansible_hostname }} is down'
+            when: command_output.stdout.find('down') != -1
+                
