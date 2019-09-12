@@ -31,7 +31,7 @@ Ansible Roles
 
 It defines a standard way or structure on how files and folders should be organised into a project.
 
-Example:
+Example: Tree View of folders
     
 AnsiblePRoject
     inventory.txt
