@@ -1,0 +1,28 @@
+body {
+    font-family: cursive;
+    font-size: 18px;
+}
+
+h1, h2 {
+    color: rgba(0, 108, 128, 0.58);
+    font-family: Helvetica Neue, Arial;
+}
+
+h1 {
+    font-size: 40px;  
+}
+
+h2 {
+    font-size: 25px;
+}
+
+.main-text {
+    
+    text-align: justify;
+    
+}
+
+.author-text {
+    font-size: 22px;
+    font-family: fantasy;
+}

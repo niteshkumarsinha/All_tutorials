@@ -16,8 +16,8 @@ Defining variable with (vars)
         dns_server: 10.1.121.12     
     tasks:
         - lineinfile:
-            path: /etc/resolv.conf
-            line: 'nameserver {{ dns_server }}'
+              path: /etc/resolv.conf
+              line: 'nameserver {{ dns_server }}'
             
             
 Variables can be defined in inventory file itself or in any other file.

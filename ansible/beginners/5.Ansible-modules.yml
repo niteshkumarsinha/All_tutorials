@@ -26,7 +26,7 @@ Ex: change directory and cat
           command: cat /etc/resolv.conf
           
         - name: "Display resolv.conf contents"
-          command: car resolv.conf chdir=/etc
+          command: cat resolv.conf chdir=/etc
           
         - name: "Copy files"
           copy: src=/srcfile dest=/dest

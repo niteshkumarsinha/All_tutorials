@@ -28,7 +28,7 @@ docker images
 2.port mapping
 --------------
 
-docker run -d -p 9595:80 webapp-nitesh:latest  ( host port : conatiner port)
+docker run -d -p 9595:80 webapp-nitesh:latest  ( host port : container port)
 
 
 3.Access a Containers Shell

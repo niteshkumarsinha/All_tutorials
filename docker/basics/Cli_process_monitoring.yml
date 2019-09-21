@@ -1,6 +1,24 @@
 To see whats going on in running containers
 -------------------------------------------------
 
-docker container top     ---> process list in one container 
-docker container inspect ---> details of one container config
+docker container top     ---> process list running in one container 
+docker container inspect ---> details of one container config(startup,config, volumes, networking etc)
 docker container stats   ---> performance stats for all containers
+
+
+docker container run -d --name nginx nginx
+docker container run -d --name mysql -e MYSQL_RANDOM_ROOT_PASSWORD
+
+
+Examples:
+
+docker container top mysql
+docker container top nginx
+
+docker container inspect nginx
+
+
+docker container stats
+
+
+

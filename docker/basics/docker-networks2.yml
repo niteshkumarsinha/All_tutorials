@@ -1,0 +1,64 @@
+Networks
+------------
+
+docker container run -p
+
+To check open ports of a container on network:  docker container port <container>
+
+
+.Each container connected to a private virtual network : "bridge"
+.Each virtual network routes through NAT firewall on host IP.
+
+docker container run -p 80:80 --name webhost -d nginx
+
+docker container port webhost
+
+docker container inspect --format '{{ .NetworkSettings.IPAddress }}' webhost 
+
+
+CLI Management of Virtual Networks
+-----------------------------------
+
+docker network ls                   --->  Shows networks
+
+docker network inspect              --->  Inspect a network 
+
+docker network create --driver      --->  Create a network
+
+docker network connect              --->  Attach a network to container
+
+docker network disconnect           --->  Deattach a network from container
+
+docker network inspect bridge
+
+Example
+-----------
+
+docker network create my_app_net
+
+docker container run -d --name new_nginx --network my_app_net nginx
+
+docker network inspect my_app_net
+
+docker network connect my_app_net <container>
+
+DNS
+--------------
+
+It is the key to inter container communications
+
+--link -> used to enable dns on default bridge netwok (as automatic DNS resolution is not enabled, manual links need to be established)
+
+
+
+docker daemon has a built in DNS server that container uses by default.
+
+Docker uses the container names as equivalent to host names for containers talking to each other.
+
+When we create a custom bridge network it gets a new feature of automatic DNS resolution, So all containers in this custom virtual network can connect to other containers using their container names.
+
+Docker defaults hostnames as container names.
+
+Example:
+
+docker container exec -it my_nginx ping new_nginx       

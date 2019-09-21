@@ -15,7 +15,7 @@ JSON
 ----
 
 {
-    "servers" [
+    "servers": [
         {
             "name": "server1",
             "owner": "john",
