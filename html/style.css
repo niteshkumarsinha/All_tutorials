@@ -1,28 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: cursive;
     font-size: 18px;
 }
 
 h1, h2 {
-    color: rgba(0, 108, 128, 0.58);
+    color: rgba(124, 20, 68, 0.58);
     font-family: Helvetica Neue, Arial;
 }
 
 h1 {
     font-size: 40px;  
+    margin-bottom: 20px;
 }
 
 h2 {
     font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .main-text {
     
     text-align: justify;
+    margin-bottom: 10px;
     
 }
 
 .author-text {
     font-size: 22px;
     font-family: fantasy;
+    float: left;
+}
+
+.container {
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+     margin-top: 20px;
+}
+
+.blog-posts {
+  
+    width: 75%;
+    float: left;
+    padding: 20px;
+    position: relative;
+   
+}
+
+.other-posts {
+    width: 25%;
+    float: left
+}
+
+.author-box {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    float: left;
+}
+
+.author-box img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.date {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }

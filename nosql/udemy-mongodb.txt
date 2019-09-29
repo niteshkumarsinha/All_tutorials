@@ -88,8 +88,8 @@ Extended JSON example
 	-----------
 	{
 		"_id": ObjectId("5fds235235fdsdfsd3434"),
-		"name": "Nitesh"
-		"Age": NumberInt(28)
+		"name": "Nitesh",
+		"Age": NumberInt(28),
 		"registered": ISODate("2019-06-07T01:24:10 -2:00")
 	}
 		
@@ -446,9 +446,49 @@ Note : There is no command to create new Database. Database will be created toge
 INSERT Methods
 -----------------------------
 
+.There are several collection methods to perform insertion and must be executed on specific collection.
 
-	
-	
-	
-	
+.Insert one or many documents(objects)   --> Return WriteResult or BulkWriteResult Object
 
+    Syntax
+    -------
+    
+    db.<collection name>.insert(<object> or <Array> of Objects)
+    
+    
+    
+.Insert One Document                    -->  Returns "insertedId" of the inserted document
+
+    Syntax
+    -------
+    db.<collection name>.insertOne(<object>)
+    
+    
+    
+.Insert Many Document                   -->  Returns "insertedIds" (array) of the inserted documents
+
+    Syntax
+    ----------
+    
+    db.<collection name>.insertMany(<Array of objects>)
+    
+    
+    Examples
+    -----------
+    
+    db.getCollection('first').insert({})  or db.first.insert({})
+    
+    to see all documents in a collection:  db.first.find()
+    
+    
+    db.getCollection('first').insert([{}, {}, {}])
+    
+    
+    to remove all documents in a collection: db.first.remove()
+    
+    
+    db.first.insertOne({})
+    
+    db.getCollection('first').insertMany([{}, {}, {}])
+    
+    
