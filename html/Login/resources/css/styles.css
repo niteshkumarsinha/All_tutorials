@@ -1,0 +1,89 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*:focus {
+	outline: none;
+}
+
+.main-login{
+	background-image: url(img/login.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	height: 100vh;
+	position: relative;
+}
+
+.form-control{
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	width: 50%;
+	transform: translate(-30%, -30%);
+}
+
+.ion-person{
+	display: inline;
+	color: #ed275d;
+	font-size: 30px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.ion-key {
+	display: inline;
+	color: #ed275d;
+	font-size: 30px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+.form-input{
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 50%;
+	margin-left: 2%;
+}
+
+.form-submit {
+	display: block;
+	margin-top: 20px;
+	color: #ed275d;
+	width: 50px;
+	height: 10px;
+	padding: 10px;
+	text-align: center;
+}
+
+
+a {
+	border: 1px solid #a0e97a;
+	vertical-align: middle;
+	border-radius: 200px;
+}
+
+a:hover{
+	background-color: #ed275d;
+	color: white;
+}
+
+
+.username,
+.password {
+	width: 25px;
+	height: 25px;
+	display: inline;
+}
+
+input {
+	background: inherit;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	caret-color: rgb(0, 200, 0);
+	color: white;
+}
+
+

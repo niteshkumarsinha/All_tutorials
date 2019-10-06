@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
         <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/queries.css">
         <title>Omnifood</title>
     </head>
     <body>
@@ -13,6 +15,7 @@
             <nav>
                 <div class="row">
                     <img src="resources/img/logo-white.png" alt="omnifood logo" class="logo">
+                    <img src="resources/img/logo.png" alt="omnifood logo" class="logo-black">
                     <ul class="main-nav">                
                         <li><a href="#">Food delivery</a></li>
                         <li><a href="#">How it works</a></li>
@@ -27,7 +30,7 @@
                 <a class="btn btn-ghost" href="#">Show me more</a>
             </div>
         </header>
-        <section class="section-features">
+        <section class="section-features js--section-features">
             <div class="row">
                 
                 <h2>Get food fast &mdash; not fast food.</h2>
@@ -339,6 +342,107 @@
                 
             </div>
         </section>
+        
+        <section class="section-form">
+            <div class="row">
+                <h2>
+                    We're happy to hear from you
+                </h2>
+            </div>
+            <div class="row">
+                <form method="post" action="#" class="contact-form">
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="name">Name</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="email">Email</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <input type="email" name="email" id="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="find-us">How did you find us?</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <select name="find-us" id="find-us">
+                                <option value="friends">Friends</option>
+                                <option value="search" selected>Search Engine</option>
+                                <option value="advt">Advertisement</option>
+                                <option value="others">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>Newsletter</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <input type="checkbox" name="news" id="news" checked> Yes Please
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>Drop us a line</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <textarea name="message" placeholder="Your Message"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>    
+                        <div class="col span-2-of-3">
+                            <input type="submit" value="Send it!">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="row">
+                <div class="col span-1-of-2">
+                    <ul class="footer-nav">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">iOS App</a></li>
+                        <li><a href="#">Android App</a></li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-2">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    Copyright &copy; 2019 Omnifood. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
+	 <script src="https://cdn.jsdelivr.net/npm/respond@0.9.0/main.min.js"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	 <script src="resources/js/scripts.js"></script>
+	 <script src="vendors/js/jquery.waypoints.min.js"></script>
     </body>
 </html>
 
