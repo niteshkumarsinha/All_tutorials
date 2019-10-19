@@ -30,16 +30,17 @@ body {
       rgba(40, 180, 131, 0.8)
     ),
     url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* top left is origin */
+  background-size: cover; /*always try to fit element inside the view port*/
+  background-position: top; 
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* top left is origin and we move to the edges with respect to origin setting coordinates */
   position: relative;
+
 }
 
 .logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 40px;  /* counting in reference to parent(in this case header) */
+  left: 40px;  /* counting in reference to parent(in this case header) */
 }
 
 .logo {
@@ -47,10 +48,10 @@ body {
 }
 
 .text-box {
-	position: absolute;
+	position: absolute; /* wrt header*/
 	top: 40%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); /* we want the center at the origin*/
 }
 
 .heading-primary {
@@ -70,4 +71,9 @@ body {
 	font-size: 20px;
 	font-weight: 700;
 	letter-spacing: 17.4px;
+}
+
+
+@keyframes moveInLeft {
+  
 }
