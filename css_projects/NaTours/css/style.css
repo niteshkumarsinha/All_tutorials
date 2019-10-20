@@ -51,29 +51,152 @@ body {
 	position: absolute; /* wrt header*/
 	top: 40%;
 	left: 50%;
-	transform: translate(-50%, -50%); /* we want the center at the origin*/
+  transform: translate(-50%, -50%); /* we want the center at the origin*/
+  text-align: center; /* inline block element are treated as text */
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  backface-visibility: hidden; /* this property determines whether back part of the element is visible for the user when we transform it*/
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
 	display: block;
 	font-size: 60px;
 	font-weight: 400;
-	letter-spacing: 35px;
+  letter-spacing: 35px;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  
+
+  /*
+  animation-delay: 3s;
+  animation-iteration-count: 3;
+
+  */
 }
 
 .heading-primary-sub {
 	display: block;
 	font-size: 20px;
 	font-weight: 700;
-	letter-spacing: 17.4px;
+  letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
 }
 
 
 @keyframes moveInLeft {
-  
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  } 
+
+  /* 60%{
+    transform: rotate(-5deg);
+  } */
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  } 
+}
+
+/*To apply these animations we must   have to specify two properties
+  1. animation-name
+  2. animation-duration
+
+  Other properties can also be specified
+*/
+
+
+@keyframes moveInRight{
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  } 
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  } 
+}
+
+
+
+@keyframes moveInBottom{
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  } 
+ 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  } 
+}
+/* link here is the pseudo class which represents the state of button selector*/
+.btn:link, 
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s; /*all properties are allowed for animation for .2s*/
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/*when we click its active state*/
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn-white{
+  background-color: #fff;
+  color: #777;
+}
+
+
+/*Pseudo elements allow us style certain parts of elements .
+after pseudo element acts like a virtual element right after(behind ) the element we are selecting and we can style that element.
+*/
+
+.btn::after{
+  content: ""; /*we must specify content and display*/
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s; /*We put transition property at the initial state*/
+}
+
+.btn-white::after{
+  background-color: #fff;
+}
+
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6) ;
+  opacity: 0; /*Its the trick to fade something*/ 
+}
+
+.btn-animated{
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; /*It will automatically apply style of 0% before animation starts*/
 }
