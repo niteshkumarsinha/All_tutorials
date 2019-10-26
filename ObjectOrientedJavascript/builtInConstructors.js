@@ -36,3 +36,4 @@ console.log(arr2);
 
 const regEx = /\w+/;
 const regEx2 = new RegExp('\\w+')
+

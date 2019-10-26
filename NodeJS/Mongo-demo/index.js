@@ -5,12 +5,56 @@ mongoose.connect('mongodb://localhost/mongo-exercise')
     .catch(err => console.error("Couldn't connect to MongoDB", err))
 
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255,
+        //match: /pattern/
+    }, //name: String, //
+    category: {
+        type: String,
+        required: true,
+        enum: ['web', 'mobile', 'network'],
+        lowercase: true,
+        //uppercase: true,
+        trim: true
+        //category must be of one of these values
+
+    },
     author: String,
-    tags: [String],
+    // tags: [String],
+
+    //Custom Validators
+    tags: {
+        type: Array,
+        validate: {
+            isAsync: true, //makes it a async validator
+            validator: function (v, callback) {
+                //Do some async work and when the result is ready we run callback
+                setTimeout(() => {
+                    const result = v && v.length > 0;
+                    callback(result)
+                }, 1000);
+            },
+            message: 'A course should have at least one tag'
+        }
+    },
     date: Date,
     isPublished: Boolean,
-    price: Number
+    //price: Number
+
+    price: {
+        type: Number,
+        required: function () {
+            return this.isPublished;
+        },
+        min: 10,
+        max: 200,
+        get: v => Math.round(v),
+        set: v => Math.round(v)
+        // So we can set the required to boolean or a function
+    }
 })
 
 //Course Class Model using the schema
@@ -19,9 +63,23 @@ const Course = mongoose.model('course', courseSchema) //Singular name of collect
 
 async function createCourse() {
     //this object maps to a document in  MongoDb Database
-    const course = new Course({ name: "Angular Course", author: "Mosh", tags: ['node', 'backend'], isPublished: true })
-    const result = await course.save();
-    console.log(result)
+    const course = new Course({
+        name: "Angular Course",
+        author: "Mosh", category: "Web", tags: ['node', 'backend'], isPublished: true
+    })
+
+    try {
+        // await course.validate()
+        const result = await course.save();
+        console.log(result)
+    }
+
+    catch (err) {
+        for (field in err.errors) {
+            console.log(err.errors[field]);
+        }
+    }
+
 }
 
 async function getCourses() {
@@ -97,9 +155,7 @@ async function updateCourse(id) {
             isPublished: false
         }
     })
-
     console.log(result)
-
 }
 
 async function removeCourse(id) {
@@ -107,6 +163,11 @@ async function removeCourse(id) {
     console.log(result)
 }
 
-removeCourse("5a68fde3f09ad7646ddec17e")
+//removeCourse("5a68fde3f09ad7646ddec17e")
 
 // getCourses()
+
+createCourse()
+
+
+
