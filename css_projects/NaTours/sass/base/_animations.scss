@@ -1,0 +1,57 @@
+
+
+@keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-10rem);
+    } 
+  
+    /* 60%{
+      transform: rotate(-5deg);
+    } */
+    80% {
+      transform: translateX(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    } 
+  }
+  
+  /*To apply these animations we must   have to specify two properties
+    1. animation-name
+    2. animation-duration
+  
+    Other properties can also be specified
+  */
+  
+  
+  @keyframes moveInRight{
+    0% {
+      opacity: 0;
+      transform: translateX(10rem);
+    } 
+    80% {
+      transform: translateX(-1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    } 
+  }
+  
+  
+  
+  @keyframes moveInBottom{
+    0% {
+      opacity: 0;
+      transform: translateY(3rem);
+    } 
+   
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    } 
+  }
+  /* link here is the pseudo class which represents the state of button selector*/
+  
