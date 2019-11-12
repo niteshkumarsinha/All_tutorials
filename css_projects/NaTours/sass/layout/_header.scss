@@ -13,6 +13,7 @@
       url(../img/hero.jpg);
     background-size: cover; /*always try to fit element inside the view port*/
     background-position: top; 
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* top left is origin and we move to the edges with respect to origin setting coordinates */
     position: relative;
   
