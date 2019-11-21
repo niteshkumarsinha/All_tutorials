@@ -172,7 +172,9 @@
     font-weight: 100;
   }
 
-  @include respond(tab-port) {
+  //@include respond(tab-port)
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    // (hover:none) -- checks for touch devices
     height: auto; // giving this height as parent elements height will collapse after absolute positioning child element
 
     border-radius: 3px;

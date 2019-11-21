@@ -1,22 +1,50 @@
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(
       to right bottom,
       /*rgba(126, 213, 111, 0.8),  This can only be used in regular css for sass we can use below*/
         rgba($color-primary-light, 0.8),
       /* rgba(40, 180, 131, 0.8) */ rgba($color-primary-dark, 0.8)
     ),
-    url(../img/hero.jpg);
+    url(../img/hero-small.jpg);
   background-size: cover; /*always try to fit element inside the view port*/
   background-position: top;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 75vh,
-    0 100%
-  ); /* top left is origin and we move to the edges with respect to origin setting coordinates */
+  // -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  // clip-path: polygon(
+  //   0 0,
+  //   100% 0,
+  //   100% 75vh,
+  //   0 100%
+  // ); /* top left is origin and we move to the edges with respect to origin setting coordinates */
   position: relative;
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
+
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        /*rgba(126, 213, 111, 0.8),  This can only be used in regular css for sass we can use below*/
+          rgba($color-primary-light, 0.8),
+        /* rgba(40, 180, 131, 0.8) */ rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+  }
+
+  // @media (min-width: 2000px) {
+  //   background-image: linear-gradient(
+  //       to right bottom,
+  //       /*rgba(126, 213, 111, 0.8),  This can only be used in regular css for sass we can use below*/
+  //         rgba($color-primary-light, 0.8),
+  //       /* rgba(40, 180, 131, 0.8) */ rgba($color-primary-dark, 0.8)
+  //     ),
+  //     url(../img/hero.jpg);
+  // }
 
   @include respond(phone) {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);

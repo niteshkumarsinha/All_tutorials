@@ -38,3 +38,8 @@ body {
     padding: 0; //removes padding at 900px;
   }
 }
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
