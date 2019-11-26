@@ -1,2 +1,2 @@
 # All_tutorials
-contains syntax and commands
+Syntax and commands of different technologies
