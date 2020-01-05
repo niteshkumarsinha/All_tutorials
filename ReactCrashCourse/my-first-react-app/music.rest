@@ -1,0 +1,1 @@
+curl -X "GET" "https://api.spotify.com/v1/browse/categories" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQA_PVkO8Bh9hpvkS58CtS7jI2-1rGvQWYsp1ugtG5FOwLWNGR35IDPfJE5r9bnBIr9c8c05i1cFQWbcTEJJeARWVI0htuh0XDDRGKP2y5W4bL_JjfwBLXel5rxBHw8Ab_corNR1WU6OXkGBV4Hf7LKtxk20mFM"

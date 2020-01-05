@@ -407,10 +407,10 @@ Exploring MongoDB Databases and Collections
 
 Commands
 -----------
->db			-  shows active database
->show dbs	-  list all databases
->use <database name>   - change active database
->show collections	- lists all collections inside active databases
+>db			           -  shows active database
+>show dbs	           -  list all databases
+>use <database name>   -  change active database
+>show collections      -  lists all collections inside active databases
 
 
 
@@ -445,11 +445,13 @@ Note : There is no command to create new Database. Database will be created toge
 	
 INSERT Methods
 -----------------------------
+###############################
+
 
 .There are several collection methods to perform insertion and must be executed on specific collection.
 
 .Insert one or many documents(objects)   --> Return WriteResult or BulkWriteResult Object
-
+=========================================
     Syntax
     -------
     
@@ -458,7 +460,7 @@ INSERT Methods
     
     
 .Insert One Document                    -->  Returns "insertedId" of the inserted document
-
+=====================
     Syntax
     -------
     db.<collection name>.insertOne(<object>)
@@ -466,7 +468,7 @@ INSERT Methods
     
     
 .Insert Many Document                   -->  Returns "insertedIds" (array) of the inserted documents
-
+======================
     Syntax
     ----------
     
@@ -478,17 +480,80 @@ INSERT Methods
     
     db.getCollection('first').insert({})  or db.first.insert({})
     
-    to see all documents in a collection:  db.first.find()
+    ---->to see all documents in a collection:  db.first.find()
     
     
     db.getCollection('first').insert([{}, {}, {}])
     
     
-    to remove all documents in a collection: db.first.remove()
+    ---->to remove all documents in a collection: db.first.remove()
     
     
     db.first.insertOne({})
     
     db.getCollection('first').insertMany([{}, {}, {}])
+
+    ------------------------------------------------------------
     
-    
+.Insert Documents with different value types
+=============================================
+
+    db.getCollection('first').insertOne({
+    	"string": "Hello World",
+    	"boolean": true,
+    	"number": 10,
+    	"numberInt": NumberInt(100),
+    	"numberLong": NumberLong(21324433144233),
+    	"date": new Date(),
+    	"object": {
+    		"a": 10,
+    		"b": true,
+
+    	},
+    	"array": [1, 2, 3]	
+    })
+
+
+    db.getCollection('second').insertOne({
+    	"name": "Mike",
+    	"sports": ["Cricket", "Football", "Tennis"],
+    	"medalsQuantity": 35,
+    	"info": {
+    		"champion": true,
+    		"team": {
+    			"title": "Black Hawks",
+    			"stats": {
+    				"winsToLosesRate": 0.65,
+    				"wins": 135 
+    			}
+    		}
+    	},
+    	"documentUpdatedAt": new Date()
+    })
+
+
+.Duplicate '_id' Error
+=========================
+
+WriteError: E11000 duplicate key error collection
+
+_id must be unique across documents in the SAME collection
+
+
+.Reading Documents
+===================
+
+	find Method
+	------------
+	db.<collection name>.find(<query>, <fields>)
+
+	Note: 
+		. This method returns cursor
+		. Cursor must be iterated to get documents in Extended JSON format
+
+	findOne Method
+	--------------
+	db.<collection name>.find(<query>, <fields>)
+
+		. This method returns Extended JSON object
+
