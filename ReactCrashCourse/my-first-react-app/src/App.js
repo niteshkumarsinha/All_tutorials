@@ -76,17 +76,33 @@ import todoList from './todoData';
 
 class App extends React.Component {
 
-
     constructor(){
       super();
       this.state = {
         todos: todoList
       };
+      this.handleChange = this.handleChange.bind(this);
     };
 
-    render(){
+    
+    
+    handleChange(id){
+      this.setState(prevState => {
+        const updatedTodos = prevState.todos.map(todo => {
+          if (todo.id === id){
+            todo.completed = !todo.completed
+          }
+          return todo;
+        })
 
-      const todoItems = this.state.todos.map(item => <ToDo key={item.id} id={item.id} name={item.name} completed={item.completed}/>)
+        return {
+          todos: updatedTodos
+        }
+      })
+    }
+
+    render(){
+      const todoItems = this.state.todos.map(item => <ToDo key={item.id} id={item.id} name={item.name} completed={item.completed} handleChange={this.handleChange}/>)
       return (
         <div className='todo-list'> 
           {todoItems}

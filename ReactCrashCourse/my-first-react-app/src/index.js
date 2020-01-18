@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import MyInfo from './MyInfo';
-import App from './App2';
+import App from './App4';
 
 // //functional component
 // function MyApp(){

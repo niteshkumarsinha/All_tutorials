@@ -11,14 +11,21 @@ function displayText(e){
     }   
 }
 
+
 function ToDo(props){
-   
-    return (
+    
+    const style = {
+        
+        "text-decoration": 'line-through',
+        "color" : '#cdcdcd'
+    }    
+
+    return (    
     <div className='todo-item'>
         {
-            props.completed ? <input  id={props.id} type="checkbox"  onChange={displayText} checked={props.completed} /> : <input id={props.id} type="checkbox"  onChange={displayText}/>
+            props.completed ? <input  id={props.id} type="checkbox"  onChange={() => props.handleChange(props.id)} checked={props.completed} /> : <input id={props.id} type="checkbox"  onChange={displayText}/>
         }           
-        <p>{props.name}</p>
+        <p  style={props.completed ? style : null}>{props.name}</p>
     </div>
     )
 }

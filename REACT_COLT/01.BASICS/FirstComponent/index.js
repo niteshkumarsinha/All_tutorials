@@ -4,6 +4,8 @@ class Hello extends React.Component {
   }
 }
 
+
+//FUNCTION COMMPONENT
 function HelloWorld() {
   return (
     <div>

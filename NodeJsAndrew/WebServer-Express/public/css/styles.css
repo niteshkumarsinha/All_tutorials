@@ -1,4 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 h1 {
-    color: brown;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: brown;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.container {
+  width: 800px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: rgba(231, 216, 216, 0.2);
+}
+
+.header {
+  width: 100%;
+  height: 10vh;
+  background-color: rgb(161, 149, 206);
+}
+
+.contents {
+  width: 100%;
+  height: 80vh;
+  background-color: rgb(236, 235, 235);
+}
+
+.header__item {
+  list-style: none;
+  margin: 20px 20px;
+}
+
+.header__item li {
+  display: inline-block;
+  margin: 20px 20px;
+  text-transform: uppercase;
+}
+
+.header__item li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+  transition: all 1s;
+}
+
+.footer p {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.header__item li .header__item--1:hover,
+.header__item li .header__item--2:hover,
+.header__item li .header__item--3:hover {
+  border-radius: 10px;
+  background-color: rgb(255, 0, 0);
+}
+
+.container .contents .data {
+  padding: 20px 20px;
+  background-color: rgb(244, 245, 248);
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 100px rgba(165, 158, 158, 0.2);
+}
+
+.container .contents .data-value {
+  padding: 20px 20px;
+  background-color: rgb(244, 245, 248);
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 10px;
+  height: 60vh;
+  box-shadow: 0 10px 100px rgba(165, 158, 158, 0.2);
+}
+
+input[type="text"] {
+  width: 40%;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}
+
+button {
+  width: 100px;
+  height: 25px;
+  border: none;
+  background-color: rgb(135, 97, 170);
+  border-radius: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  outline: none;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: rgb(75, 30, 121);
+  cursor: pointer;
+}
+
+.input__info {
+  font-size: 20px;
+  color: rgb(114, 22, 22);
+  margin-bottom: 10px;
 }
