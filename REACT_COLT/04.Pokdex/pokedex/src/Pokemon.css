@@ -1,0 +1,28 @@
+.Pokemon {
+  background-color: rgb(231, 231, 241);
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  margin: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.2);
+}
+
+.Pokemon-name {
+  padding: 10px;
+  color: rgb(73, 87, 87);
+  transition: all 0.3s;
+}
+
+.Pokemon-name:hover {
+  transform: skewX(30deg) skewY(-5deg);
+}
+
+.Pokemon-imgsrc {
+  width: 90px;
+  transition: all 3s;
+}
+
+.Pokemon-imgsrc:hover {
+  transform: scale(2);
+}

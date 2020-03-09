@@ -40,7 +40,7 @@ app.get("/about", (req, res) => {
   });
 });
 
-app .get("/home", (req, res) => {
+app.get("/home", (req, res) => {
   res.render("index", {
     title: "Home Page from HBS",
     name: "Nitesh Kumar"
@@ -78,6 +78,37 @@ app.get("/weather", (req, res) => {
     });
   });
 });
+
+
+
+app.get("/fetchWeather", (req, res) => {
+  
+  if (!req.query.location) {
+    req.query.location = "Delhi";
+  }
+
+  geoCode(req.query.location, (error, data) => {
+    if (error) return;
+    forecast(data.longitude, data.latitude, (err, response) => {
+      if (err) return;
+      console.log("Getting Weather Data");
+      console.log(chalk.green("-----------------------------"));
+      const data = response.body.currently;
+      const temperature = data.temperature;
+      const chanceOfRain = data.precipProbability;
+      const summary = response.body.daily.data[0].summary;
+      const output = `${summary} It is currently ${temperature} degrees out. There is a ${chanceOfRain}% chance of rain`;
+      console.log(chalk.blue.inverse.bold(output));
+
+      res.send({
+        location: req.query.location,
+        temperature: data.temperature,
+        chanceOfRain: data.precipProbability
+      });
+    });
+  });
+});
+
 
 app.get("/products", (req, res) => {
   console.log(req);

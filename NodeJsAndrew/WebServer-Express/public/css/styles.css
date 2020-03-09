@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url(https://images.unsplash.com/photo-1489259116245-d2d53a4bcb42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);
+  z-index: -1;
+}
+
 h1 {
   color: brown;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -103,6 +108,7 @@ button {
   text-transform: uppercase;
   outline: none;
   margin-left: 10px;
+  box-shadow: 0 10px 100px rgba(231, 216, 216, 0.7);
 }
 
 button:hover {
@@ -114,4 +120,18 @@ button:hover {
   font-size: 20px;
   color: rgb(114, 22, 22);
   margin-bottom: 10px;
+}
+
+.loading {
+  margin: 10px auto;
+  padding: 2px;
+  background: rgb(233, 210, 228);
+  color: green;
+}
+
+.location {
+  font-size: 20px;
+  margin: 20px auto;
+  color: rgb(165, 78, 78);
+  text-decoration: underline;
 }
