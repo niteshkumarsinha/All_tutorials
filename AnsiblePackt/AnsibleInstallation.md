@@ -1,0 +1,85 @@
+# Installation Steps
+
+Three Main Approaches for installing on ubuntu
+
+## Basic
+
+sudo apt-get update
+sudo apt-get install ansible
+
+## From Ansible Repository
+
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+
+## From VirtualEnv
+
+sudo apt-get install python-minimal virtualenv python-dev build-essential
+mkdir ansible
+cd ansible
+virtualenv venv27
+source venv27/bin/activate
+pip install ansible
+or
+pip install git+https://github.com/ansible/ansible
+
+## Ansible Configuration File Precedence
+
+ANSIBLE_CONFIG
+./ansible.cfg
+~/.ansible.cfg
+/etc/ansible/ansible.cfg (default configuration file)
+
+## Hosts File
+
+## vim hosts
+
+[all]
+centos1
+
+## vim ansible.cfg
+
+[defaults]
+inventory = hosts
+
+ansible all -m ping
+ANSIBLE_HOST_KEY_CHECKING=False ansible all - m ping
+
+## vim ansible.cfg
+
+[defaults]
+inventory = hosts
+host_key_checking=False
+
+###############################################
+
+When we just do ssh it asks for password
+
+ssh centos1
+
+> Enter Password
+
+Therefore create ssh key by below command
+
+ssh-keygen
+ssh-copy-id (IP or hostname)
+
+################################################
+
+ansible all -i centos1, -m ping
+ansible all -m debug
+
+## To get documentation
+
+ansible-doc debug
+
+## Ansible command line tool can expect parameters either by --args or -A
+
+ansible all -vvv -m debug --args='msg="This is a debug message" verbosity=3'
+
+ansible grouname --list-hosts
+anisble all --list-hosts
+ansible ~.\*3 --list-hosts

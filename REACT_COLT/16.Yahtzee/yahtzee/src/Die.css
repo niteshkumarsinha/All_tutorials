@@ -15,7 +15,9 @@
 .Die {
   color: white;
   text-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  font-size: 50px;
   transition: all 0.3s ease;
+ 
 }
 
 .Die-locked {
@@ -43,4 +45,8 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.Die-rolling{
+  animation: spin 1s ease-out;
 }

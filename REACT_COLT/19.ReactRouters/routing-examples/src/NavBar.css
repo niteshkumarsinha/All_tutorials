@@ -1,0 +1,17 @@
+.NavBar {
+    background: rgba(69, 90 , 100, 1);
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+
+.NavBar a {
+    color: white;
+}
+
+a.NavBar-active {
+    color: red;
+}

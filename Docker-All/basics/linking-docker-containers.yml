@@ -16,7 +16,6 @@ Ans: docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql
     
      docker run --name myadmin -d --link some-mysql:db -p 8080:80 adminer
      
-     
 
 
 
