@@ -24,6 +24,7 @@ class FoodSearch extends Component {
           onChange={this.handleChange}
         />
         <Link to={`/food/${this.state.query}`}>Go!</Link>
+        
       </div>
     );
   }

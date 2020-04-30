@@ -162,12 +162,12 @@ Other Utilities
 
 MongoClient(mongo shell)	------------------>			MongoDBServer(mongod) 
 							<------------------
-																| |
+																⬆ |
 																| |
 																| |		CRUD operations
 																| |
 																| |
-																| |
+																| ⬇
 																
 															Mongo Driver
 															  -NodeJs
