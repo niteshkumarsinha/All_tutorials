@@ -1,2 +1,6 @@
 .venv/*
 REACT_COLT/react-bootcamp-materials/
+REACT_NATIVE/*/node_modules
+REACT_NATIVE/*/node_modules/*
+*/*/node_modules
+*/*/node_modules/*
